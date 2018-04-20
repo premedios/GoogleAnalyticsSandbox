@@ -16,16 +16,15 @@ function renderCharts() {
          * element with the id "view-selector-container".
          */
         var viewSelector = new gapi.analytics.ViewSelector({
-                container: 'view-selector-container',
-            })
-            .execute();
+            container: 'view-selector-container',
+        }).execute();
 
 
         /**
          * Update the activeUsers component, the Chartjs charts, and the dashboard
          * title whenever the user changes the view.
          */
-        viewSelector.on('viewChange', function(data) {
+        viewSelector.on('change', function(data) {
 
             // Render all the of charts for this view.
             renderWeekOverWeekChart(data.ids);
