@@ -205,7 +205,7 @@ function renderCharts() {
         }
 
         function handleResponse(response) {
-            console.log("hello");
+            console.log(response);
             if (response && !response.error) {
                 if (response.items) {
                     printAccountSummaries(response.items);
