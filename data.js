@@ -87,6 +87,8 @@ function renderCharts() {
                     ]
                 };
 
+                console.log(data);
+
                 //console.log(data);
 
                 new Chart($("#chart"), {
