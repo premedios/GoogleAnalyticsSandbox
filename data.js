@@ -17,7 +17,7 @@ function renderCharts() {
             immediate: true
         }, function(response) {
             // Get a list of all Google Analytics accounts for this user
-            gapi.client.analytics.management.accountSummaries.list().then(handleResponse);
+            gapi.client.analytics.management.accounts.list().then(handleResponse);
         })
 
 
