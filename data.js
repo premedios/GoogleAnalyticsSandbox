@@ -218,6 +218,7 @@ function renderCharts() {
                 console.log('Account id: ' + account.id);
                 console.log('Account name: ' + account.name);
                 console.log('Account kind: ' + account.kind);
+                console.log('-------------');
             }
         }
     });
