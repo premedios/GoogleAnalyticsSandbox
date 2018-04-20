@@ -22,58 +22,11 @@
         }(window, document, 'script'));
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
     <script type="text/javascript">
         $(function() {
-            gapi.analytics.ready(function() {
-                gapi.analytics.auth.authorize({
-                    container: 'embed-api-auth-container',
-                    clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
-                });
-
-                /**
-                 * Create a new ViewSelector instance to be rendered inside of an
-                 * element with the id "view-selector-container".
-                 */
-                var viewSelector = new gapi.analytics.ViewSelector({
-                    container: 'view-selector-container'
-                });
-
-                // Render the view selector to the page.
-                viewSelector.execute();
-
-
-                /**
-                 * Create a new DataChart instance with the given query parameters
-                 * and Google chart options. It will be rendered inside an element
-                 * with the id "chart-container".
-                 */
-                var dataChart = new gapi.analytics.googleCharts.DataChart({
-                    query: {
-                        metrics: 'ga:sessions',
-                        dimensions: 'ga:date',
-                        'start-date': '30daysAgo',
-                        'end-date': 'yesterday'
-                    },
-                    chart: {
-                        container: 'chart-container',
-                        type: 'BAR',
-                        options: {
-                            width: '100%'
-                        }
-                    }
-                });
-
-                /**
-                 * Render the dataChart on the page whenever a new view is selected.
-                 */
-                viewSelector.on('change', function(ids) {
-                    dataChart.set({
-                        query: {
-                            ids: ids
-                        }
-                    }).execute();
-                });
-            });
+            renderCharts();
         })
     </script>
     <meta charset="UTF-8">
@@ -86,6 +39,7 @@
     <div id="embed-api-auth-container" style="display:none;"></div>
     <div id="view-selector-container" style="width: 100%; display: flex;"></div>
     <div id="chart-container"></div>
+    <div id="legend-container"></div>
 </body>
 
 </html>
