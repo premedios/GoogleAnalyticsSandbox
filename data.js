@@ -89,7 +89,27 @@ function renderCharts() {
 
                 //console.log(data);
 
-                new Chart($("#chart"), { type: 'bar', data: data });
+                new Chart($("#chart"), {
+                    type: 'bar',
+                    data: data,
+                    options: {
+                        maintainAspectRatio: false,
+                        scales: {
+                            xAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "Date"
+                                },
+                            }],
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: "All Views"
+                                },
+                            }]
+                        },
+                    }
+                });
                 generateLegend('legend-container', data.datasets);
             });
         }
