@@ -205,7 +205,6 @@ function renderCharts() {
         }
 
         function handleResponse(response) {
-            console.log(response);
             if (response.result.items && response.result.items.length) {
                 printAccountSummaries(response.result.items);
             } else {
@@ -219,7 +218,13 @@ function renderCharts() {
                 console.log('Account name: ' + account.name);
                 console.log('Account kind: ' + account.kind);
                 console.log('-------------');
+                gapi.client.analytics.management.webproperties.list({ 'accountId': account.id})
+                .then(printAccountProperties).then(null, function(err) { console.log(err); });
             }
+        }
+
+        function printAccountProperties(response) {
+            console.log(response);
         }
     });
 }
