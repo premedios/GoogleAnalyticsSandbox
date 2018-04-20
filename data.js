@@ -1,19 +1,45 @@
 function renderCharts() {
     gapi.analytics.ready(function() {
+
+        /**
+         * Authorize the user immediately if the user has already granted access.
+         * If no access has been created, render an authorize button inside the
+         * element with the ID "embed-api-auth-container".
+         */
         gapi.analytics.auth.authorize({
             container: 'embed-api-auth-container',
             clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
         });
 
         /**
-         * Create a new ViewSelector instance to be rendered inside of an
+         * Create a new ViewSelector2 instance to be rendered inside of an
          * element with the id "view-selector-container".
          */
         var viewSelector = new gapi.analytics.ViewSelector({
-            container: 'view-selector-container'
-        }).execute();
+                container: 'view-selector-container',
+            })
+            .execute();
 
 
+        /**
+         * Update the activeUsers component, the Chartjs charts, and the dashboard
+         * title whenever the user changes the view.
+         */
+        viewSelector.on('viewChange', function(data) {
+
+            // Render all the of charts for this view.
+            renderWeekOverWeekChart(data.ids);
+            // renderYearOverYearChart(data.ids);
+            // renderTopBrowsersChart(data.ids);
+            // renderTopCountriesChart(data.ids);
+        });
+
+
+        /**
+         * Draw the a chart.js line chart with data from the specified view that
+         * overlays session data for the current week over session data for the
+         * previous week.
+         */
         function renderWeekOverWeekChart(ids) {
 
             // Adjust `now` to experiment with different days, for testing only...
@@ -68,11 +94,17 @@ function renderCharts() {
                     ]
                 };
 
-                new Chart(makeCanvas('chart-container')).Bar(data);
-                generateLegend('legend-container', data.datasets);
+                new Chart(makeCanvas('chart-1-container')).Line(data);
+                generateLegend('legend-1-container', data.datasets);
             });
         }
 
+        /**
+         * Extend the Embed APIs `gapi.analytics.report.Data` component to
+         * return a promise the is fulfilled with the value returned by the API.
+         * @param {Object} params The request parameters.
+         * @return {Promise} A promise.
+         */
         function query(params) {
             return new Promise(function(resolve, reject) {
                 var data = new gapi.analytics.report.Data({ query: params });
@@ -119,6 +151,7 @@ function renderCharts() {
             }).join('');
         }
 
+
         // Set some global Chart.js defaults.
         Chart.defaults.global.animationSteps = 60;
         Chart.defaults.global.animationEasing = 'easeInOutQuart';
@@ -136,5 +169,6 @@ function renderCharts() {
             div.appendChild(document.createTextNode(str));
             return div.innerHTML;
         }
+
     });
 }
