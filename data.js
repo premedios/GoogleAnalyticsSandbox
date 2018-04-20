@@ -11,9 +11,11 @@ function renderCharts() {
             clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
         });
 
-        var request = gapi.client.analytics.management.accounts.list();
-        console.log(request);
-        request.execute(handleResponse);
+        gapi.client.load('analytics', 'v3').then(function() {
+
+            // Get a list of all Google Analytics accounts for this user
+            gapi.client.analytics.management.accounts.list().then(handleResponse);
+        });
 
         /**
          * Create a new ViewSelector2 instance to be rendered inside of an
