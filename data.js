@@ -98,7 +98,7 @@ function renderCharts() {
                 //console.log(data);
 
                 new Chart(makeCanvas('chart-container'), { type: 'bar', data: data });
-                generateLegend('legend-1-container', data.datasets);
+                generateLegend('legend-container', data.datasets);
             });
         }
 
