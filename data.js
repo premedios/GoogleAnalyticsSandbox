@@ -220,12 +220,37 @@ function renderCharts() {
                 console.log('-------------');
                 console.log('PROPERTIES');
                 gapi.client.analytics.management.webproperties.list({ 'accountId': account.id})
-                .then(printAccountProperties).then(null, function(err) { console.log(err); });
+                .then(printWebProperties).then(null, function(err) { console.log(err); });
             }
         }
 
-        function printAccountProperties(response) {
-            console.log(response);
+        function printWebProperties(response) {
+            if (response.result.items && response.result.items.length) {
+                response.result.items.forEach(function(item) {
+                    gapi.client.management.profiles.list(
+                        { 
+                            'accountId': item.accountId,
+                            'webPropertyId': item.id
+                        }).then(printProfile).then(null, function(err) { console.log(err);});
+                });
+            }
+        }
+
+        function printProfile(response) {
+            if (response.result.items && response.result.items.length) {
+                response.result.items.forEach(function(item) {
+                    gapi.client.analytics.data.ga.get({
+                        'ids': 'ga:' + item.id,
+                        'start-date': '7daysAgo',
+                        'end-date': 'today',
+                        'metrics': 'ga:sessions'
+                    }).then(function(response) {
+                        console.log(JSON.stringify(response));
+                    }).then(null, function(err) {
+                        console.log(err);
+                    });
+                })
+            }
         }
     });
 }
