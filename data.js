@@ -16,11 +16,8 @@ function renderCharts() {
             scope: ['https://www.googleapis.com/auth/analytics.readonly'],
             immediate: true
         }, function(response) {
-            gapi.client.load('analytics', 'v3').then(function() {
-                // Get a list of all Google Analytics accounts for this user
-                var accounts = gapi.client.analytics.management.accountSummaries.list();
-                accounts.execute(handleResponse);
-            });
+            // Get a list of all Google Analytics accounts for this user
+            gapi.client.analytics.management.accountSummaries.list().then(handleResponse);
         })
 
 
