@@ -41,6 +41,11 @@
                 gapi.analytics.auth.on('error', function(error) {
                     console.log(error);
                 });
+
+                var vieweSelector = gapi.analytics.ext.ViewSelector2({
+                    container: 'view-selector-container',
+                });
+                console.log(vieweSelector);
             });
         })
     </script>
@@ -51,7 +56,8 @@
 </head>
 
 <body>
-    <div id="embed-api-auth-container"></div>
+    <div id="embed-api-auth-container" style="display:none;"></div>
+    <div id="view-selector-container"></div>
 </body>
 
 </html>
