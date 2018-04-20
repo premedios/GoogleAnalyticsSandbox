@@ -10,6 +10,7 @@ function renderCharts() {
             container: 'embed-api-auth-container',
             clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
         }, function(response) {
+            console.log(response);
             var request = gapi.client.analytics.management.accountSummaries.list();
             request.execute(handleResponse);
         });
