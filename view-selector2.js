@@ -16,7 +16,7 @@
 /* global gapi */
 
 
-var accountSummaries = require('./javascript-api-utils/lib/account-summaries');
+import accountSummaries from 'javascript-api-utils/lib/account-summaries';
 
 
 /**
