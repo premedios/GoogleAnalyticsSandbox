@@ -9,11 +9,10 @@ function renderCharts() {
         gapi.analytics.auth.authorize({
             container: 'embed-api-auth-container',
             clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
-        }, function(response) {
-            console.log(response);
-            var request = gapi.client.analytics.management.accountSummaries.list();
-            request.execute(handleResponse);
         });
+
+        var request = gapi.client.analytics.management.accounts.list();
+        request.execute(handleResponse);
 
         /**
          * Create a new ViewSelector2 instance to be rendered inside of an
