@@ -70,9 +70,6 @@ function renderCharts() {
                 var data2 = results[1].rows.filter(function(row) { return row[2] !== "0"; }).map(function(row) { return +row[2]; });
                 var labels = results[1].rows.filter(function(row) { return row[2] !== "0"; }).map(function(row) { return +row[0]; });
 
-                console.log(results[0].rows.filter(function(row) { return row[2] !== "0"; }));
-
-
                 labels = labels.map(function(label) {
                     return moment(label, 'YYYYMMDD').format('ddd');
                 });
@@ -100,7 +97,7 @@ function renderCharts() {
 
                 //console.log(data);
 
-                new Chart(makeCanvas('chart-container')).Line(data);
+                new Chart(makeCanvas('chart-container'), { type: 'bar', data: data });
                 generateLegend('legend-1-container', data.datasets);
             });
         }
