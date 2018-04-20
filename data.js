@@ -71,12 +71,14 @@ function renderCharts() {
                 var data2 = results[1].rows.filter(function(row) { return row[2] !== "0"; }).map(function(row) { return +row[2]; });
                 var labels = results[0].rows.filter(function(row) { return row[2] !== "0"; }).map(function(row) { return +row[0]; });
 
+                console.log(labels);
+
                 labels = labels.map(function(label) {
                     return moment(label, 'YYYYMMDD').format('ddd');
                 });
 
                 var data = {
-                    labels: ["this week", "last week"],
+                    labels: labels,
                     datasets: [{
                             label: 'Last Week',
                             data: data2
