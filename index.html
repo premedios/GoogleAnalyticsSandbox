@@ -31,17 +31,17 @@
                     clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
                 });
 
-                gapi.analytics.auth.on('signIn', function() {
-                    console.log("signed In");
-                });
+                // gapi.analytics.auth.on('signIn', function() {
+                //     console.log("signed In");
+                // });
 
-                gapi.analytics.auth.on('needsAuthorization', function() {
-                    console.log('needs authorization');
-                })
+                // gapi.analytics.auth.on('needsAuthorization', function() {
+                //     console.log('needs authorization');
+                // })
 
-                gapi.analytics.auth.on('error', function(error) {
-                    console.log(error);
-                });
+                // gapi.analytics.auth.on('error', function(error) {
+                //     console.log(error);
+                // });
 
                 var vieweSelector = gapi.analytics.ext.ViewSelector2({
                     container: 'view-selector-container',
