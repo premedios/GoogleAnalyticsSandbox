@@ -12,6 +12,7 @@ function renderCharts() {
         });
 
         var request = gapi.client.analytics.management.accounts.list();
+        console.log(request);
         request.execute(handleResponse);
 
         /**
