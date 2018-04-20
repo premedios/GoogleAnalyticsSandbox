@@ -17,7 +17,9 @@ function renderCharts() {
          */
         var viewSelector = new gapi.analytics.ViewSelector({
             container: 'view-selector-container',
-        }).execute();
+        });
+
+        viewSelector.execute();
 
 
         /**
