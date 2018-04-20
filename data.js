@@ -227,7 +227,7 @@ function renderCharts() {
         function printWebProperties(response) {
             if (response.result.items && response.result.items.length) {
                 response.result.items.forEach(function(item) {
-                    gapi.client.management.profiles.list(
+                    gapi.client.analytics.management.profiles.list(
                         { 
                             'accountId': item.accountId,
                             'webPropertyId': item.id
