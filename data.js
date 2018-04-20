@@ -107,6 +107,9 @@ function renderCharts() {
                                 },
                             }],
                             yAxes: [{
+                                ticks: {
+                                    suggestedMin: 0
+                                },
                                 scaleLabel: {
                                     display: true,
                                     labelString: "All Views"
