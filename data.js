@@ -26,10 +26,10 @@ function renderCharts() {
          * Update the activeUsers component, the Chartjs charts, and the dashboard
          * title whenever the user changes the view.
          */
-        viewSelector.on('change', function(data) {
+        viewSelector.on('change', function(ids) {
 
             // Render all the of charts for this view.
-            renderWeekOverWeekChart(data.ids);
+            renderWeekOverWeekChart(ids);
             // renderYearOverYearChart(data.ids);
             // renderTopBrowsersChart(data.ids);
             // renderTopCountriesChart(data.ids);
