@@ -95,7 +95,7 @@ function renderCharts() {
                     ]
                 };
 
-                new Chart(makeCanvas('chart-1-container')).Line(data);
+                new Chart(makeCanvas('chart-container')).Line(data);
                 generateLegend('legend-1-container', data.datasets);
             });
         }
