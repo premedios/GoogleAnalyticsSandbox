@@ -13,8 +13,8 @@ function renderCharts() {
 
         gapi.auth.authorize({
             client_id: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com',
-            SCOPES: ['https://www.googleapis.com/auth/analytics.readonly'],
-            immediate: true
+            scope: ['https://www.googleapis.com/auth/analytics.readonly'],
+            immediate: false
         }, function(response) {
             console.log(response);
             // gapi.client.load('analytics', 'v3').then(function() {
