@@ -78,18 +78,10 @@ function renderCharts() {
                     labels: labels,
                     datasets: [{
                             label: 'Last Week',
-                            fillColor: 'rgba(220,220,220,0.5)',
-                            strokeColor: 'rgba(220,220,220,1)',
-                            pointColor: 'rgba(220,220,220,1)',
-                            pointStrokeColor: '#fff',
                             data: data2
                         },
                         {
                             label: 'This Week',
-                            fillColor: 'rgba(151,187,205,0.5)',
-                            strokeColor: 'rgba(151,187,205,1)',
-                            pointColor: 'rgba(151,187,205,1)',
-                            pointStrokeColor: '#fff',
                             data: data1
                         }
                     ]
@@ -97,7 +89,7 @@ function renderCharts() {
 
                 //console.log(data);
 
-                new Chart(makeCanvas('chart-container'), { type: 'bar', data: data });
+                new Chart($("#chart"), { type: 'bar', data: data });
                 generateLegend('legend-container', data.datasets);
             });
         }
