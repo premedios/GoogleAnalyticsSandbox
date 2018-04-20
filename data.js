@@ -18,7 +18,7 @@ function renderCharts() {
         }, function(response) {
             // Get a list of all Google Analytics accounts for this user
             gapi.client.analytics.management.accounts.list().then(handleResponse);
-        })
+        });
 
 
 
@@ -241,6 +241,7 @@ function renderCharts() {
                 response.result.items.forEach(function(item) {
                     gapi.client.analytics.data.ga.get({
                         'ids': 'ga:' + item.id,
+                        'dimensions': 'ga:date,ga:nthDay',
                         'start-date': '7daysAgo',
                         'end-date': 'today',
                         'metrics': 'ga:sessions'
