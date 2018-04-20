@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script>
+        (function(w, d, s, g, js, fjs) {
+            g = w.gapi || (w.gapi = {});
+            g.analytics = {
+                q: [],
+                ready: function(cb) {
+                    this.q.push(cb)
+                }
+            };
+            js = d.createElement(s);
+            fjs = d.getElementsByTagName(s)[0];
+            js.src = 'https://apis.google.com/js/platform.js';
+            fjs.parentNode.insertBefore(js, fjs);
+            js.onload = function() {
+                g.load('analytics')
+            };
+        }(window, document, 'script'));
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            console.log("Hello!");
+        })
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Google Analytics Playground</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
