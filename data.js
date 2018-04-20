@@ -6,10 +6,10 @@ function renderCharts() {
          * If no access has been created, render an authorize button inside the
          * element with the ID "embed-api-auth-container".
          */
-        gapi.analytics.auth.authorize({
-            container: 'embed-api-auth-container',
-            clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
-        });
+        // gapi.analytics.auth.authorize({
+        //     container: 'embed-api-auth-container',
+        //     clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
+        // });
 
         gapi.auth.authorize({
             client_id: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com',
