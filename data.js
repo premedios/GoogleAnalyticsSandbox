@@ -206,16 +206,14 @@ function renderCharts() {
 
         function handleResponse(response) {
             console.log(response);
-            if (response && !response.error) {
-                if (response.result.items) {
-                    printAccountSummaries(response.result.items);
-                }
+            if (response.result.items && response.result.items.length) {
+                printAccountSummaries(response.result.items);
             } else {
                 console.log('There was an error: ' + response.message);
             }
         }
 
-        function printAccountSummaries() {
+        function printAccountSummaries(accounts) {
             for (var i = 0, account; account = accounts[i]; i++) {
                 console.log('Account id: ' + account.id);
                 console.log('Account name: ' + account.name);
