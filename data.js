@@ -18,32 +18,32 @@ function renderCharts() {
          * Create a new ViewSelector2 instance to be rendered inside of an
          * element with the id "view-selector-container".
          */
-        var viewSelector = new gapi.analytics.ViewSelector({
-            container: 'view-selector-container',
-        });
+        // var viewSelector = new gapi.analytics.ViewSelector({
+        //     container: 'view-selector-container',
+        // });
 
-        viewSelector.execute();
-
-
-        /**
-         * Update the activeUsers component, the Chartjs charts, and the dashboard
-         * title whenever the user changes the view.
-         */
-        viewSelector.on('change', function(ids) {
-
-            // Render all the of charts for this view.
-            renderWeekOverWeekChart(ids);
-            // renderYearOverYearChart(data.ids);
-            // renderTopBrowsersChart(data.ids);
-            // renderTopCountriesChart(data.ids);
-        });
+        // viewSelector.execute();
 
 
-        /**
-         * Draw the a chart.js line chart with data from the specified view that
-         * overlays session data for the current week over session data for the
-         * previous week.
-         */
+        // /**
+        //  * Update the activeUsers component, the Chartjs charts, and the dashboard
+        //  * title whenever the user changes the view.
+        //  */
+        // viewSelector.on('change', function(ids) {
+
+        //     // Render all the of charts for this view.
+        //     renderWeekOverWeekChart(ids);
+        //     // renderYearOverYearChart(data.ids);
+        //     // renderTopBrowsersChart(data.ids);
+        //     // renderTopCountriesChart(data.ids);
+        // });
+
+
+        // /**
+        //  * Draw the a chart.js line chart with data from the specified view that
+        //  * overlays session data for the current week over session data for the
+        //  * previous week.
+        //  */
         function renderWeekOverWeekChart(ids) {
 
             // Adjust `now` to experiment with different days, for testing only...
