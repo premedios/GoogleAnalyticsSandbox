@@ -197,6 +197,7 @@ function renderCharts() {
         }
 
         function handleResponse(response) {
+            console.log("hello");
             if (response && !response.error) {
                 if (response.items) {
                     printAccountSummaries(response.items);
