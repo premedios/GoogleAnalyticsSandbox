@@ -76,7 +76,7 @@ function renderCharts() {
                 });
 
                 var data = {
-                    labels: labels,
+                    labels: ["this week", "last week"],
                     datasets: [{
                             label: 'Last Week',
                             data: data2
