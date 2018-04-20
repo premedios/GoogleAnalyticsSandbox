@@ -24,7 +24,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(function() {
-            console.log("Hello!");
+            gapi.analytics.ready(function() {
+                gapi.analytics.auth.authorize({
+                    container: 'embed-api-auth-container',
+                    clientid: '708383383102-jo7o2tdaq4ku3ckv7jtbscip09hfpu0i.apps.googleusercontent.com'
+                });
+
+                gapi.analytics.auth.on('signIn', function() {
+                    console.log("signed In");
+                });
+
+                gapi.analytics.auth.on('needsAuthorization', function() {
+                    console.log('needs authorization');
+                })
+
+                gapi.analytics.auth.on('error', function(error) {
+                    console.log(error);
+                });
+            });
         })
     </script>
     <meta charset="UTF-8">
@@ -34,7 +51,7 @@
 </head>
 
 <body>
-
+    <div id="embed-api-auth-container"></div>
 </body>
 
 </html>
