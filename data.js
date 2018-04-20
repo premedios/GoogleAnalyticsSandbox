@@ -218,6 +218,7 @@ function renderCharts() {
                 console.log('Account name: ' + account.name);
                 console.log('Account kind: ' + account.kind);
                 console.log('-------------');
+                console.log('PROPERTIES');
                 gapi.client.analytics.management.webproperties.list({ 'accountId': account.id})
                 .then(printAccountProperties).then(null, function(err) { console.log(err); });
             }
