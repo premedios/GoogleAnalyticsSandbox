@@ -207,8 +207,8 @@ function renderCharts() {
         function handleResponse(response) {
             console.log(response);
             if (response && !response.error) {
-                if (response.items) {
-                    printAccountSummaries(response.items);
+                if (response.result.items) {
+                    printAccountSummaries(response.result.items);
                 }
             } else {
                 console.log('There was an error: ' + response.message);
