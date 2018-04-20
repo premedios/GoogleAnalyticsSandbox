@@ -14,7 +14,7 @@ function renderCharts() {
         gapi.auth.authorize({
             client_id: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com',
             scope: ['https://www.googleapis.com/auth/analytics.readonly'],
-            immediate: false
+            immediate: true
         }, function(response) {
             console.log(response);
             // gapi.client.load('analytics', 'v3').then(function() {
