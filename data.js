@@ -18,6 +18,12 @@ function renderCharts() {
         }, function(response) {
             // Get a list of all Google Analytics accounts for this user
             gapi.client.analytics.management.accounts.list().then(handleResponse);
+            var viewSelector = new gapi.analytics.ViewSelector({
+                container: 'viewselector-container',
+            });
+    
+            viewSelector.execute();
+    
         });
 
 
@@ -26,12 +32,7 @@ function renderCharts() {
          * Create a new ViewSelector2 instance to be rendered inside of an
          * element with the id "view-selector-container".
          */
-        var viewSelector = new gapi.analytics.ViewSelector({
-            container: 'viewselector-container',
-        });
-
-        viewSelector.execute();
-
+        
 
         // /**
         //  * Update the activeUsers component, the Chartjs charts, and the dashboard
