@@ -6,26 +6,26 @@ function renderCharts() {
          * If no access has been created, render an authorize button inside the
          * element with the ID "embed-api-auth-container".
          */
-        // gapi.analytics.auth.authorize({
-        //     container: 'embed-api-auth-container',
-        //     clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
-        // });
-
-        gapi.auth.authorize({
-            client_id: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com',
-            scope: ['https://www.googleapis.com/auth/analytics.readonly'],
-            immediate: true
-        }, function(response) {
-            // Get a list of all Google Analytics accounts for this user
-            gapi.client.analytics.management.accounts.list().then(handleResponse);
-            var viewSelector = new gapi.analytics.ViewSelector({
-                container: 'viewselector-container',
-            });
-    
-            viewSelector.execute();
-    
+        gapi.analytics.auth.authorize({
+            container: 'embed-api-auth-container',
+            clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
         });
 
+        // gapi.auth.authorize({
+        //     client_id: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com',
+        //     scope: ['https://www.googleapis.com/auth/analytics.readonly'],
+        //     immediate: true
+        // }, function(response) {
+        //     // Get a list of all Google Analytics accounts for this user
+    
+        // });
+
+        gapi.client.analytics.management.accounts.list().then(handleResponse);
+        var viewSelector = new gapi.analytics.ViewSelector({
+            container: 'viewselector-container',
+        });
+
+        viewSelector.execute();
 
 
         /**
