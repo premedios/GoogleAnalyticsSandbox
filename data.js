@@ -207,7 +207,7 @@ function renderCharts() {
 
         function handleResponse(response) {
             if (response.result.items && response.result.items.length) {
-                var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option>" + item.name + "</option>", "");
+                var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
                 $("#accountId").html(accountIdSelectOptions); 
                 printAccountSummaries(response.result.items);
             } else {
