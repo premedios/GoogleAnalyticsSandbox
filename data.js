@@ -21,11 +21,11 @@ function renderCharts() {
         // });
 
         gapi.client.analytics.management.accounts.list().then(handleResponse);
-        var viewSelector = new gapi.analytics.ViewSelector({
-            container: 'viewselector-container',
-        });
+        // var viewSelector = new gapi.analytics.ViewSelector({
+        //     container: 'viewselector-container',
+        // });
 
-        viewSelector.execute();
+        // viewSelector.execute();
 
 
         /**
@@ -207,6 +207,8 @@ function renderCharts() {
 
         function handleResponse(response) {
             if (response.result.items && response.result.items.length) {
+                accountIdSelectOptions = response.result.items.reduce((optionsHTML, item) => optionsHTML + "<option>" + item.name + "<option>", "");
+                $("#accountId").html(optionsHTML); 
                 printAccountSummaries(response.result.items);
             } else {
                 console.log('There was an error: ' + response.message);
