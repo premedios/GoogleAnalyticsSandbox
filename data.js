@@ -207,8 +207,8 @@ function renderCharts() {
 
         function handleResponse(response) {
             if (response.result.items && response.result.items.length) {
-                accountIdSelectOptions = response.result.items.reduce((optionsHTML, item) => optionsHTML + "<option>" + item.name + "<option>", "");
-                $("#accountId").html(optionsHTML); 
+                var accountIdSelectOptions = response.result.items.reduce((optionsHTML, item) => optionsHTML + "<option>" + item.name + "<option>", "");
+                $("#accountId").html(accountIdSelectOptions); 
                 printAccountSummaries(response.result.items);
             } else {
                 console.log('There was an error: ' + response.message);
