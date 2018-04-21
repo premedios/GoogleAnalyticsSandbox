@@ -232,7 +232,16 @@ function renderCharts() {
         function showWebProperties(id) {
             gapi.client.analytics.management.webproperties.list({
                 'accountId': id
-            }).then(response => console.log(response)).then(null, err => console.log(err));
+            }).then(response => {
+                var propertyIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "," + item.accountId + "'>" + item.name + "</option>", "");
+                $("#propertyId").html(propertyIdSelectOptions);
+                showProfiles(response.result.items[0].id + "," + response.result.items[0].accountId)
+                $("#propertyId").on('change', e => showProfiles(e.target.value));
+            }).then(null, err => console.log(err));
+        }
+
+        function showProfiles(ids) {
+            console.log(ids.split(","));
         }
 
         function printWebProperties(response) {
