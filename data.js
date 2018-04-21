@@ -26,11 +26,11 @@ function renderCharts() {
          * Create a new ViewSelector2 instance to be rendered inside of an
          * element with the id "view-selector-container".
          */
-        // var viewSelector = new gapi.analytics.ViewSelector({
-        //     container: 'view-selector-container',
-        // });
+        var viewSelector = new gapi.analytics.ViewSelector({
+            container: 'viewselector-container',
+        });
 
-        // viewSelector.execute();
+        viewSelector.execute();
 
 
         // /**
