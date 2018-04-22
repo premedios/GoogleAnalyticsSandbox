@@ -246,7 +246,7 @@ function renderCharts() {
             gapi.client.analytics.management.profiles.list({
                 'accountId': queryIds[1],
                 'webPropertyId': queryIds[0]
-            }).then(console.log(response)).then(null, err => console.log(err));
+            }).then(response => console.log(response)).then(null, err => console.log(err));
         }
 
         function printWebProperties(response) {
