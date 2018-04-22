@@ -242,6 +242,11 @@ function renderCharts() {
 
         function showProfiles(ids) {
             console.log(ids.split(","));
+            var queryIds = ids.split(",");
+            gapi.client.analytics.management.profiles.list({
+                'accountId': queryIds[1],
+                'webPropertyId': queryIds[0]
+            }).then(console.log(response)).then(null, err => console.log(err));
         }
 
         function printWebProperties(response) {
