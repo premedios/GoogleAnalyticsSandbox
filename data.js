@@ -102,8 +102,6 @@ function renderCharts() {
                     ]
                 };
 
-                console.log(data);
-
                 //console.log(data);
 
                 new Chart($("#chart"), {
@@ -246,7 +244,13 @@ function renderCharts() {
             gapi.client.analytics.management.profiles.list({
                 'accountId': queryIds[1],
                 'webPropertyId': queryIds[0]
-            }).then(response => console.log(response)).then(null, err => console.log(err));
+            }).then(response => {
+                var profileIdSelectOptions = response.result.items.filter(item => item.name !== "")
+                .reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
+                $("#profileId").html(profileIdSelectOptions);
+                showChart(response.result.items[0].id);
+                $("#profileId").on("change", e => showChart(e.target.value));
+            }).then(null, err => console.log(err));
         }
 
         function printWebProperties(response) {
@@ -275,7 +279,7 @@ function renderCharts() {
                     }).then(null, function(err) {
                         console.log(err);
                     });
-                })
+                });
             }
         }
     });
