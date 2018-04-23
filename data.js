@@ -211,7 +211,7 @@ function renderCharts() {
         function showAccounts(response) {
             if (response.result.items && response.result.items.length) {
                 response.result.items.filter(item => item.name !== "").forEach(item => {
-                    accountIsValid(item).then(console.log("Valid")).then(null, console.log("Not valid"));
+                    accountIsValid(item).then(result => console.log(result)).then(null, result => console.log(result));
                 });
                 // var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
                 // $("#accountId").html(accountIdSelectOptions);
@@ -277,9 +277,9 @@ function renderCharts() {
                                 //getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
                             })
                             if (permissionsCount == 0) {
-                                reject(false);
+                                reject("No permissions");
                             } else {
-                                fulfill(true);
+                                fulfill("Permissions");
                             }
                         });
                     }));
