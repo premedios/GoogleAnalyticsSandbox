@@ -218,7 +218,7 @@ function renderCharts() {
 
         function query(params) {
             return new Promise((fulfill, reject) => {
-                gapi.client.analytics.data.ga.get({ query: params }).then(response => fulfill(response)).then(null, reject(response));
+                gapi.client.analytics.data.ga.get({ query: params }).then(response => fulfill(response)).then(null, response => reject(response));
             });
         }
 
