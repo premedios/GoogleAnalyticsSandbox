@@ -262,7 +262,7 @@ function renderCharts() {
         function accountPermission(accountId) {
             return getWebProperties(accountId).then(items => items.forEach(item => {
                 getProfiles(item.accountId, item.id).then(items => items.forEach(item => {
-                    getProfileData(item.id, item.permissions).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
+                    getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
                 }));
             }));
         }
