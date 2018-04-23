@@ -264,7 +264,7 @@ function renderCharts() {
         function accountIsValid(item) {
             return new Promise((fulfill, reject) => {
                 if (item.permissions.effective.indexOf("EDIT") !== -1) {
-                    fulfill(true);
+                    fulfill("Permissions");
                 } else {
                     getWebProperties(item).then(result => result.items.forEach(item => {
                         var permissionsCount = 0;
