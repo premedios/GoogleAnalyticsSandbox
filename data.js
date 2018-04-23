@@ -204,9 +204,10 @@ function renderCharts() {
         }
 
         function showAccounts(response) {
+            console.log(response)
             if (response.result.items && response.result.items.length) {
                 response.result.items.filter(item => item.name !== "").forEach(item => {
-                    console.log(accountPermission(item.id));
+                    accountPermission(item.id);
                 });
                 // var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
                 // $("#accountId").html(accountIdSelectOptions);
