@@ -170,7 +170,7 @@ function renderCharts() {
 
         function renderChart(ids) {
             gapi.client.analytics.data.ga.get({
-                'ids': 'ga:' + itemId,
+                'ids': ids,
                 'dimensions': 'ga:date,ga:nthDay',
                 'start-date': '7daysAgo',
                 'end-date': 'today',
