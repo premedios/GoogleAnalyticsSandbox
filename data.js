@@ -33,6 +33,8 @@ function renderCharts() {
                 'end-date': moment(now).format('YYYY-MM-DD')
             });
 
+            console.log(thisWeek);
+
             var lastWeek = query({
                 'ids': ids,
                 'dimensions': 'ga:date,ga:nthDay',
