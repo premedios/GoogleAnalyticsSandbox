@@ -152,7 +152,7 @@ function renderCharts() {
                     }
                 }, "");
                 $("#profileId").html(profilesSelectOptions);
-                $("#profileId").on("change", e => renderChart('ga:' + e.target.value));
+                $("#profileId").on("change", e => renderWeekOverWeekChart('ga:' + e.target.value));
                 $("#profileId").trigger("change");
             });
         }
@@ -217,11 +217,8 @@ function renderCharts() {
         }
 
         function query(params) {
-            return new Promise(function(fulfill, reject) {
-                var data = new gapi.analytics.report.Data({ query: params });
-                data.once('success', function(response) { fulfill(response); })
-                    .once('error', function(response) { reject(response); })
-                    .execute();
+            return new Promise((fulfill, reject) => {
+                gapi.client.analytics.data.ga.get({ query: params }).then(response => fulfill(response)).then(null, reject(response));
             });
         }
 
