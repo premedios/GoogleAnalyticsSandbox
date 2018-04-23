@@ -236,8 +236,8 @@ function renderCharts() {
             getWebProperties(accountId).then(items => {
                 var webPropertySelectOptions = items.reduce((optionsHTML, item) => optionsHTML + "<option value='" + [item.id, item.accountId].join(",") + "'>" + item.name + "</options>", "");
                 $("#propertyId").html(webPropertySelectOptions);
-                $("#propertyId").on("change", e => showWebProfiles(e.target.value));
-                $("#propertyId").trigger("change");
+                // $("#propertyId").on("change", e => showWebProfiles(e.target.value));
+                // $("#propertyId").trigger("change");
             });
         }
 
