@@ -245,9 +245,9 @@ function renderCharts() {
                     'metrics': 'ga:sessions'
                 }).then(response => {
                     if (response.result.error) {
-                        reject(result.error.errors[0].message);
+                        reject(response.result.error.errors[0].message);
                     } else {
-                        fulfill(result.rows);
+                        fulfill(response.result.rows);
                     }
                 })
             });
