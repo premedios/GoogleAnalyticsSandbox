@@ -212,6 +212,7 @@ function renderCharts() {
             if (response.result.items && response.result.items.length) {
                 response.result.items.filter(item => item.name !== "").forEach(item => {
                     accountIsValid(item).then(result => {
+                        console.log(result.hasPermissions);
                         if (result.hasPermissions === true) {
                             var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
                             $("#accountId").html(accountIdSelectOptions);
