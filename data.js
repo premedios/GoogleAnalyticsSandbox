@@ -226,8 +226,39 @@ function renderCharts() {
             });
         }
 
+        function getProfiles(accountId, itemId) {
+            return new Promise((fulfill, reject) => {
+                gapi.client.analytics.management.profiles.list({
+                    'accountId': accountId,
+                    'webPropertyId': itemId
+                }).then(response => fulfill(response.result.items));
+            });
+        }
+
+        function getProfileData(itemId) {
+            return new Promise((fulfill, reject) => {
+                gapi.client.analytics.data.ga.get({
+                    'ids': 'ga:' + item.id,
+                    'dimensions': 'ga:date,ga:nthDay',
+                    'start-date': '7daysAgo',
+                    'end-date': 'today',
+                    'metrics': 'ga:sessions'
+                }).then(response => {
+                    if (response.result.error) {
+                        reject(result.error.errors[0].message);
+                    } else {
+                        fulfill(result.rows);
+                    }
+                })
+            });
+        }
+
         function accountPermission(accountId) {
-            getWebProperties(accountId).then(items => console.log("Web properties: ", items));
+            return getWebProperties(accountId).then(items => items.forEach(item => {
+                getProfiles(item.accountId, item.id).then(items => items.forEach(item => {
+                    getProfileData(item.id).then(true).then(false);
+                }));
+            }));
         }
 
         function printAccountSummaries(accounts) {
