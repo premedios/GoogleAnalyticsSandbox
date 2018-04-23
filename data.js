@@ -267,8 +267,8 @@ function renderCharts() {
                     fulfill(true);
                 } else {
                     getWebProperties(item).then(result => result.items.forEach(item => {
+                        var permissionsCount = 0;
                         getProfiles(item.accountId, item.id).then(items => {
-                            var permissionsCount = 0;
                             items.forEach(item => {
                                 console.log(item.permissions.effective);
                                 if (item.permissions.effective.indexOf("EDIT") !== -1) {
@@ -276,7 +276,7 @@ function renderCharts() {
                                 }
                                 //getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
                             })
-                            return (permissionsCount === 0 ? reject(false) : fulfill(true));
+                            return (permissionsCount == 0 ? reject(false) : fulfill(true));
                         });
                     }));
                 }
