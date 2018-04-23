@@ -263,15 +263,17 @@ function renderCharts() {
 
         function accountIsValid(item) {
             if (item.permissions.effective.indexOf("EDIT") !== -1) return true
-            return getWebProperties(item).then(result => result.items.forEach(item => {
-                getProfiles(item.accountId, item.id).then(items => items.forEach(item => {
-                    if (item.permissions.effective.indexOf("EDIT") !== -1) {
-                        return true
-                    } else {
-                        return false
-                    }
-                    //getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
-                }));
+            getWebProperties(item).then(result => result.items.forEach(item => {
+                getProfiles(item.accountId, item.id).then(items => {
+                    var permissionsCount;
+                    items.forEach(item => {
+                        if (item.permissions.effective.indexOf("EDIT") !== -1) {
+                            permissionsCount += 1;
+                        }
+                        //getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
+                    })
+                    return permissionsCount !== 0;
+                });
             }));
         }
 
