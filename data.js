@@ -210,7 +210,7 @@ function renderCharts() {
                     if (item.permissions.effective.indexOf("EDIT") !== -1) {
                         console.log(item.name + "is valid");
                     } else {
-                        accountPermissions(item.id);
+                        accountPermission(item.id);
                     }
                 });
                 // var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
