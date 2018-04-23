@@ -270,13 +270,13 @@ function renderCharts() {
                         var permissionsCount = 0;
                         getProfiles(item.accountId, item.id).then(items => {
                             items.forEach(item => {
-                                console.log(item.permissions.effective);
-                                if (item.permissions.effective.indexOf("EDIT") !== -1) {
-                                    permissionsCount += 1;
-                                }
-                                //getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
-                            })
-                            return (permissionsCount == 0 ? reject(false) : fulfill(true));
+                                    console.log(item.permissions.effective);
+                                    if (item.permissions.effective.indexOf("EDIT") !== -1) {
+                                        permissionsCount += 1;
+                                    }
+                                    //getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
+                                })
+                                (permissionsCount == 0 ? reject(false) : fulfill(true));
                         });
                     }));
                 }
