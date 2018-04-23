@@ -205,6 +205,9 @@ function renderCharts() {
 
         function showAccounts(response) {
             if (response.result.items && response.result.items.length) {
+                respons.result.items.forEach(item => {
+                    console.log(accountPermission(item.id));
+                })
                 var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
                 $("#accountId").html(accountIdSelectOptions);
                 //showWebProperties(response.result.items[0].id);
@@ -214,6 +217,15 @@ function renderCharts() {
             } else {
                 console.log('There was an error: ' + response.message);
             }
+        }
+
+        function getWebProperties(accountId) {
+            return gapi.analytics.management.webproperties.list({ 'accountId': accountId })
+                .then(response.result.items);
+        }
+
+        function accountPermission(accountId) {
+            console.log(getWebProperties(accountId));
         }
 
         function printAccountSummaries(accounts) {
