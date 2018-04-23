@@ -211,11 +211,7 @@ function renderCharts() {
         function showAccounts(response) {
             if (response.result.items && response.result.items.length) {
                 response.result.items.filter(item => item.name !== "").forEach(item => {
-                    if (item.permissions.effective.indexOf("EDIT") !== -1) {
-                        selectData.accounts.push({ 'id': item.id, 'name': item.name });
-                    } else {
-                        getWebProperties(item).then(result => console.log(result));
-                    }
+                    console.log(accountIsValid(item));
                 });
                 // var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
                 // $("#accountId").html(accountIdSelectOptions);
@@ -265,10 +261,16 @@ function renderCharts() {
             });
         }
 
-        function accountPermission(accountId) {
+        function accountIsValid(item) {
+            if (item.permissions.effective.indexOf("EDIT") !== -1) return true
             return getWebProperties(accountId).then(items => items.forEach(item => {
                 getProfiles(item.accountId, item.id).then(items => items.forEach(item => {
-                    getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
+                    if (item.permissions.effective.indexOf("EDIT") !== -1) {
+                        return true
+                    } else {
+                        return false
+                    }
+                    //getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
                 }));
             }));
         }
