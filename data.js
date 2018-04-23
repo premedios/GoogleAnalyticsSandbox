@@ -221,7 +221,7 @@ function renderCharts() {
 
         function getWebProperties(accountId) {
             return gapi.client.analytics.management.webproperties.list({ 'accountId': accountId })
-                .then(response.result.items);
+                .then(response => response.result.items);
         }
 
         function accountPermission(accountId) {
