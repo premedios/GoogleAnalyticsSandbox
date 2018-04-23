@@ -33,8 +33,6 @@ function renderCharts() {
                 'end-date': moment(now).format('YYYY-MM-DD')
             });
 
-            console.log(thisWeek);
-
             var lastWeek = query({
                 'ids': ids,
                 'dimensions': 'ga:date,ga:nthDay',
@@ -47,9 +45,11 @@ function renderCharts() {
 
             Promise.all([thisWeek, lastWeek]).then(function(results) {
 
-                console.log(results[1]);
+                console.log(results);
                 var data1 = results[0].rows.filter(function(row) { return row[2] !== "0"; }).map(function(row) { return +row[2]; });
+                console.log(data1);
                 var data2 = results[1].rows.filter(function(row) { return row[2] !== "0"; }).map(function(row) { return +row[2]; });
+                console.log(data2);
                 var labels = results[0].rows.filter(function(row) { return row[2] !== "0"; }).map(function(row) { return +row[0]; });
 
                 console.log(labels);
