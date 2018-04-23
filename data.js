@@ -245,7 +245,7 @@ function renderCharts() {
             return new Promise((fulfill, reject) => {
                 gapi.client.analytics.management.webproperties.list({ 'accountId': accountId })
                     .then(response => {
-                        fulfill(response.result);
+                        fulfill(response.result.items);
                     });
             });
         }
