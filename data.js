@@ -242,7 +242,7 @@ function renderCharts() {
             });
         }
 
-        function getProfileData(itemId, premissions) {
+        function getProfileData(itemId, permissions) {
             return new Promise((fulfill, reject) => {
                 if (permissions.indexOf("EDIT") !== -1) {
                     gapi.client.analytics.data.ga.get({
