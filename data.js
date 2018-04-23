@@ -32,7 +32,7 @@ function renderCharts() {
          * Create a new ViewSelector2 instance to be rendered inside of an
          * element with the id "view-selector-container".
          */
-        
+
 
         // /**
         //  * Update the activeUsers component, the Chartjs charts, and the dashboard
@@ -207,8 +207,9 @@ function renderCharts() {
             if (response.result.items && response.result.items.length) {
                 var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
                 $("#accountId").html(accountIdSelectOptions);
-                showWebProperties(response.result.items[0].id);
-                $("#accountId").on("change", e => showWebProperties(e.target.value)); 
+                //showWebProperties(response.result.items[0].id);
+                $("#accountId").on("change", e => showWebProperties(e.target.value));
+                $("#accountId").trigger('change');
                 printAccountSummaries(response.result.items);
             } else {
                 console.log('There was an error: ' + response.message);
@@ -222,8 +223,8 @@ function renderCharts() {
                 console.log('Account kind: ' + account.kind);
                 console.log('-------------');
                 console.log('PROPERTIES');
-                gapi.client.analytics.management.webproperties.list({ 'accountId': account.id})
-                .then(printWebProperties).then(null, function(err) { console.log(err); });
+                gapi.client.analytics.management.webproperties.list({ 'accountId': account.id })
+                    .then(printWebProperties).then(null, function(err) { console.log(err); });
             }
         }
 
@@ -246,7 +247,7 @@ function renderCharts() {
                 'webPropertyId': queryIds[0]
             }).then(response => {
                 var profileIdSelectOptions = response.result.items.filter(item => item.name !== "")
-                .reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
+                    .reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
                 $("#profileId").html(profileIdSelectOptions);
                 showChart(response.result.items[0].id);
                 $("#profileId").on("change", e => showChart(e.target.value));
@@ -256,11 +257,10 @@ function renderCharts() {
         function printWebProperties(response) {
             if (response.result.items && response.result.items.length) {
                 response.result.items.forEach(function(item) {
-                    gapi.client.analytics.management.profiles.list(
-                        { 
-                            'accountId': item.accountId,
-                            'webPropertyId': item.id
-                        }).then(printProfile).then(null, function(err) { console.log(err);});
+                    gapi.client.analytics.management.profiles.list({
+                        'accountId': item.accountId,
+                        'webPropertyId': item.id
+                    }).then(printProfile).then(null, function(err) { console.log(err); });
                 });
             }
         }
