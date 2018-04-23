@@ -220,7 +220,7 @@ function renderCharts() {
         }
 
         function getWebProperties(accountId) {
-            return gapi.analytics.management.webproperties.list({ 'accountId': accountId })
+            return gapi.client.analytics.management.webproperties.list({ 'accountId': accountId })
                 .then(response.result.items);
         }
 
