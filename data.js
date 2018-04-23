@@ -335,20 +335,20 @@ function renderCharts() {
         //     }).then(null, err => console.log(err));
         // }
 
-        function showProfiles(ids) {
-            console.log(ids.split(","));
-            var queryIds = ids.split(",");
-            gapi.client.analytics.management.profiles.list({
-                'accountId': queryIds[1],
-                'webPropertyId': queryIds[0]
-            }).then(response => {
-                var profileIdSelectOptions = response.result.items.filter(item => item.name !== "")
-                    .reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
-                $("#profileId").html(profileIdSelectOptions);
-                showChart(response.result.items[0].id);
-                //$("#profileId").on("change", e => showChart(e.target.value));
-            }).then(null, err => console.log(err));
-        }
+        // function showProfiles(ids) {
+        //     console.log(ids.split(","));
+        //     var queryIds = ids.split(",");
+        //     gapi.client.analytics.management.profiles.list({
+        //         'accountId': queryIds[1],
+        //         'webPropertyId': queryIds[0]
+        //     }).then(response => {
+        //         var profileIdSelectOptions = response.result.items.filter(item => item.name !== "")
+        //             .reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
+        //         $("#profileId").html(profileIdSelectOptions);
+        //         showChart(response.result.items[0].id);
+        //         //$("#profileId").on("change", e => showChart(e.target.value));
+        //     }).then(null, err => console.log(err));
+        // }
 
         function printWebProperties(response) {
             if (response.result.items && response.result.items.length) {
