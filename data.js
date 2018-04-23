@@ -256,7 +256,7 @@ function renderCharts() {
         function accountPermission(accountId) {
             return getWebProperties(accountId).then(items => items.forEach(item => {
                 getProfiles(item.accountId, item.id).then(items => items.forEach(item => {
-                    getProfileData(item.id).then(console.log(true)).then(console.log(false));
+                    getProfileData(item.id).then(console.log(response)).then(console.log(response));
                 }));
             }));
         }
