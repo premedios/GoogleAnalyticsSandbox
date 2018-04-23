@@ -263,7 +263,7 @@ function renderCharts() {
 
         function accountIsValid(item) {
             if (item.permissions.effective.indexOf("EDIT") !== -1) return true
-            getWebProperties(item).then(result => result.items.forEach(item => {
+            return getWebProperties(item).then(result => result.items.forEach(item => {
                 getProfiles(item.accountId, item.id).then(items => {
                     var permissionsCount;
                     items.forEach(item => {
