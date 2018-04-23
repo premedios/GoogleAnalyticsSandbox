@@ -251,6 +251,7 @@ function renderCharts() {
         }
 
         function showProfiles(ids) {
+            console.log(ids);
             var idsArray = ids.split(",");
             getProfiles(idsArray[1], idsArray[0]).then(items => {
                 var profilesSelectOptions = items.reduce((optionsHTML, item) => {
