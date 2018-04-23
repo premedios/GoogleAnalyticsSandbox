@@ -1,15 +1,20 @@
 function renderCharts() {
     gapi.analytics.ready(function() {
 
-        /**
-         * Authorize the user immediately if the user has already granted access.
-         * If no access has been created, render an authorize button inside the
-         * element with the ID "embed-api-auth-container".
-         */
-        // gapi.analytics.auth.authorize({
-        //     container: 'embed-api-auth-container',
-        //     clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
-        // });
+        var selectData = {
+                accounts: [],
+                accountProperties: [],
+                propertyProfiles: []
+            }
+            /**
+             * Authorize the user immediately if the user has already granted access.
+             * If no access has been created, render an authorize button inside the
+             * element with the ID "embed-api-auth-container".
+             */
+            // gapi.analytics.auth.authorize({
+            //     container: 'embed-api-auth-container',
+            //     clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
+            // });
 
         gapi.auth.authorize({
             client_id: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com',
@@ -204,13 +209,12 @@ function renderCharts() {
         }
 
         function showAccounts(response) {
-            console.log(response)
             if (response.result.items && response.result.items.length) {
                 response.result.items.filter(item => item.name !== "").forEach(item => {
                     if (item.permissions.effective.indexOf("EDIT") !== -1) {
-                        console.log(item.name + "is valid");
+                        selectData.accounts.push({ 'id': item.id, 'name': item.name });
                     } else {
-                        accountPermission(item.id);
+                        getWebProperties(item).then(result => consoel.log(result));
                     }
                 });
                 // var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
@@ -224,10 +228,13 @@ function renderCharts() {
             }
         }
 
-        function getWebProperties(accountId) {
+        function getWebProperties(item) {
             return new Promise((fulfill, reject) => {
-                gapi.client.analytics.management.webproperties.list({ 'accountId': accountId })
-                    .then(response => fulfill(response.result.items));
+                gapi.client.analytics.management.webproperties.list({ 'accountId': item.id })
+                    .then(response => {
+                        response.result["accountName"] = item.name;
+                        fulfill(response.result);
+                    });
             });
         }
 
@@ -261,7 +268,6 @@ function renderCharts() {
         function accountPermission(accountId) {
             return getWebProperties(accountId).then(items => items.forEach(item => {
                 getProfiles(item.accountId, item.id).then(items => items.forEach(item => {
-                    console.log(item);
                     getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
                 }));
             }));
