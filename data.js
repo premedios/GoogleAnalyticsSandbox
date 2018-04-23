@@ -31,7 +31,7 @@ function renderCharts() {
                 'metrics': 'ga:sessions',
                 'start-date': moment(now).subtract(1, 'day').day(0).format('YYYY-MM-DD'),
                 'end-date': moment(now).format('YYYY-MM-DD')
-            }).then(response => console.log(response));
+            });
 
             var lastWeek = query({
                 'ids': ids,
@@ -41,7 +41,7 @@ function renderCharts() {
                     .format('YYYY-MM-DD'),
                 'end-date': moment(now).subtract(1, 'day').day(6).subtract(1, 'week')
                     .format('YYYY-MM-DD')
-            }).then(response => console.log(response));
+            });
 
             Promise.all([thisWeek, lastWeek]).then(function(results) {
 
@@ -215,7 +215,7 @@ function renderCharts() {
 
         function query(params) {
             return new Promise((fulfill, reject) => {
-                gapi.client.analytics.data.ga.get(params).then(response => fulfill(response)).then(null, response => reject(response));
+                gapi.client.analytics.data.ga.get(params).then(response => fulfill(response.results)).then(null, response => reject(response));
             });
         }
 
