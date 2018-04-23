@@ -250,6 +250,20 @@ function renderCharts() {
             });
         }
 
+        function showProfiles(ids) {
+            var idsArray = ids.split(",");
+            getProfiles(idsArray[1], idsArray[0]).then(items => {
+                var profilesSelectOptions = items.reduce((optionsHTML, item) => {
+                    if (item.permissions.effective.indexOf("EDIT") !== -1) {
+                        return optionsHTML + "<option value='" + item.id + "'>" + item.name + "</options>";
+                    }
+                });
+                $("#profileId").html(profilesSelectOptions);
+                $("#profileId").on("change", console("hello"));
+                $("#profileId").trigger("change");
+            });
+        }
+
         function getProfiles(accountId, itemId) {
             return new Promise((fulfill, reject) => {
                 gapi.client.analytics.management.profiles.list({
