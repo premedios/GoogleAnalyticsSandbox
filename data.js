@@ -282,7 +282,7 @@ function renderCharts() {
                 if (item.permissions.effective.indexOf("EDIT") !== -1) {
                     fulfill({ hasPermissions: true });
                 } else {
-                    getWebProperties(item.id).then(result => result.items.forEach(item => {
+                    getWebProperties(item.id).then(items => items.forEach(item => {
                         var permissionsCount = 0;
                         getProfiles(item.accountId, item.id).then(items => {
                             items.forEach(item => {
