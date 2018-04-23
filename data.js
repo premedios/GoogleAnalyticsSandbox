@@ -217,12 +217,14 @@ function renderCharts() {
                         if (result.hasPermissions === true) {
                             accountIdSelectOptions = accountIdSelectOptions + "<option value='" + item.id + "'>" + item.name + "</option>";
                             $("#accountId").html(accountIdSelectOptions);
+                            $("#accountId").on("change", e => showWebProperties(e.target.value));
+                            $("#accountId").trigger("change");
                         }
                     });
                 });
 
                 // //showWebProperties(response.result.items[0].id);
-                // $("#accountId").on("change", e => showWebProperties(e.target.value));
+
                 // $("#accountId").trigger('change');
                 // printAccountSummaries(response.result.items);
             } else {
@@ -230,11 +232,19 @@ function renderCharts() {
             }
         }
 
-        function getWebProperties(item) {
+        function showWebProperties(accountId) {
+            getWebProperties(accountId).then(items => {
+                var webPropertySelectOptions = items.reduce((optionsHTML, item) => optionsHTML + "<option value='" + [item.id, item.accountId].join(",") + "'>" + item.name + "</options>", "");
+                $("#propertyId").html(webPropertySelectOptions);
+                $("#propertyId").on("change", e => showWebProfiles(e.target.value));
+                $("#propertyId").trigger("change");
+            });
+        }
+
+        function getWebProperties(accountId) {
             return new Promise((fulfill, reject) => {
-                gapi.client.analytics.management.webproperties.list({ 'accountId': item.id })
+                gapi.client.analytics.management.webproperties.list({ 'accountId': accountId })
                     .then(response => {
-                        response.result["accountName"] = item.name;
                         fulfill(response.result);
                     });
             });
@@ -272,7 +282,7 @@ function renderCharts() {
                 if (item.permissions.effective.indexOf("EDIT") !== -1) {
                     fulfill({ hasPermissions: true });
                 } else {
-                    getWebProperties(item).then(result => result.items.forEach(item => {
+                    getWebProperties(item.id).then(result => result.items.forEach(item => {
                         var permissionsCount = 0;
                         getProfiles(item.accountId, item.id).then(items => {
                             items.forEach(item => {
@@ -300,16 +310,16 @@ function renderCharts() {
         //     }
         // }
 
-        function showWebProperties(id) {
-            gapi.client.analytics.management.webproperties.list({
-                'accountId': id
-            }).then(response => {
-                var propertyIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "," + item.accountId + "'>" + item.name + "</option>", "");
-                $("#propertyId").html(propertyIdSelectOptions);
-                showProfiles(response.result.items[0].id + "," + response.result.items[0].accountId)
-                $("#propertyId").on('change', e => showProfiles(e.target.value));
-            }).then(null, err => console.log(err));
-        }
+        // function showWebProperties(id) {
+        //     gapi.client.analytics.management.webproperties.list({
+        //         'accountId': id
+        //     }).then(response => {
+        //         var propertyIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "," + item.accountId + "'>" + item.name + "</option>", "");
+        //         $("#propertyId").html(propertyIdSelectOptions);
+        //         showProfiles(response.result.items[0].id + "," + response.result.items[0].accountId)
+        //         $("#propertyId").on('change', e => showProfiles(e.target.value));
+        //     }).then(null, err => console.log(err));
+        // }
 
         function showProfiles(ids) {
             console.log(ids.split(","));
