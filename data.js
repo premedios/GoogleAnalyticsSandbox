@@ -264,7 +264,7 @@ function renderCharts() {
         function accountIsValid(item) {
             if (item.permissions.effective.indexOf("EDIT") !== -1) return true
             return getWebProperties(item).then(items => items.forEach(item => {
-                getProfiles(item.accountId, item.id).then(items => items.forEach(item => {
+                getProfiles(item.accountId, item.id).then(result => result.items.forEach(item => {
                     if (item.permissions.effective.indexOf("EDIT") !== -1) {
                         return true
                     } else {
