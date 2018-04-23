@@ -237,7 +237,6 @@ function renderCharts() {
                     'accountId': accountId,
                     'webPropertyId': itemId
                 }).then(response => {
-                    console.log(response);
                     fulfill(response.result.items);
                 });
             });
@@ -262,6 +261,7 @@ function renderCharts() {
         function accountPermission(accountId) {
             return getWebProperties(accountId).then(items => items.forEach(item => {
                 getProfiles(item.accountId, item.id).then(items => items.forEach(item => {
+                    console.log(item);
                     getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
                 }));
             }));
