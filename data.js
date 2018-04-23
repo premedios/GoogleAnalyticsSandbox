@@ -207,7 +207,7 @@ function renderCharts() {
             console.log(response)
             if (response.result.items && response.result.items.length) {
                 response.result.items.filter(item => item.name !== "").forEach(item => {
-                    if (item.permissions.indexOf("EDIT") !== -1) {
+                    if (item.permissions.effective.indexOf("EDIT") !== -1) {
                         console.log(item.name + "is valid");
                     }
                 });
