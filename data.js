@@ -225,7 +225,7 @@ function renderCharts() {
         }
 
         function accountPermission(accountId) {
-            console.log(getWebProperties(accountId));
+            console.log("Web properties: ", getWebProperties(accountId));
         }
 
         function printAccountSummaries(accounts) {
