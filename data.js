@@ -214,7 +214,7 @@ function renderCharts() {
                     if (item.permissions.effective.indexOf("EDIT") !== -1) {
                         selectData.accounts.push({ 'id': item.id, 'name': item.name });
                     } else {
-                        getWebProperties(item).then(result => consoel.log(result));
+                        getWebProperties(item).then(result => console.log(result));
                     }
                 });
                 // var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
