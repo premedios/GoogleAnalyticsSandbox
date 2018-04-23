@@ -31,7 +31,7 @@ function renderCharts() {
                 'metrics': 'ga:sessions',
                 'start-date': moment(now).subtract(1, 'day').day(0).format('YYYY-MM-DD'),
                 'end-date': moment(now).format('YYYY-MM-DD')
-            });
+            }).then(response => console.log(response));
 
             var lastWeek = query({
                 'ids': ids,
@@ -41,11 +41,10 @@ function renderCharts() {
                     .format('YYYY-MM-DD'),
                 'end-date': moment(now).subtract(1, 'day').day(6).subtract(1, 'week')
                     .format('YYYY-MM-DD')
-            });
+            }).then(response => console.log(response));
 
             Promise.all([thisWeek, lastWeek]).then(function(results) {
 
-                console.log(results);
                 var data1 = results[0].rows.map(function(row) { return +row[2]; });
                 console.log(data1);
                 var data2 = results[1].rows.map(function(row) { return +row[2]; });
