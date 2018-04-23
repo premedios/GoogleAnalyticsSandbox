@@ -243,7 +243,7 @@ function renderCharts() {
                     'start-date': '7daysAgo',
                     'end-date': 'today',
                     'metrics': 'ga:sessions'
-                }).then(response => fulfill(response.result.rows)).then(null, err => reject(err));
+                }).then(response => fulfill(response.result.rows)).then(null, response => reject(response.result.err.errors[0].message));
             });
         }
 
