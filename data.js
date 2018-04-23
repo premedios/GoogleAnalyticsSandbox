@@ -150,7 +150,7 @@ function renderCharts() {
                     }
                 }, "");
                 $("#profileId").html(profilesSelectOptions);
-                $("#profileId").on("change", renderWeekOverWeekChart('ga:' + e.target.id));
+                $("#profileId").on("change", e => renderWeekOverWeekChart('ga:' + e.target.id));
                 $("#profileId").trigger("change");
             });
         }
