@@ -243,22 +243,26 @@ function renderCharts() {
             });
         }
 
-        function getProfileData(itemId) {
+        function getProfileData(itemId, premissions) {
             return new Promise((fulfill, reject) => {
-                gapi.client.analytics.data.ga.get({
-                    'ids': 'ga:' + itemId,
-                    'dimensions': 'ga:date,ga:nthDay',
-                    'start-date': '7daysAgo',
-                    'end-date': 'today',
-                    'metrics': 'ga:sessions'
-                }).then(response => fulfill(response.result.rows)).then(null, response => reject(response.result.error.errors[0].message));
+                if (permissions.indexOf("EDIT") !== -1) {
+                    gapi.client.analytics.data.ga.get({
+                        'ids': 'ga:' + itemId,
+                        'dimensions': 'ga:date,ga:nthDay',
+                        'start-date': '7daysAgo',
+                        'end-date': 'today',
+                        'metrics': 'ga:sessions'
+                    }).then(response => fulfill(response.result.rows)).then(null, response => reject(response.result.error.errors[0].message));
+                } else {
+                    reject("No permissions");
+                }
             });
         }
 
         function accountPermission(accountId) {
             return getWebProperties(accountId).then(items => items.forEach(item => {
                 getProfiles(item.accountId, item.id).then(items => items.forEach(item => {
-                    getProfileData(item.id).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
+                    getProfileData(item.id, item.permissions).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
                 }));
             }));
         }
