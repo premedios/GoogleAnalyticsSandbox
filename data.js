@@ -268,8 +268,9 @@ function renderCharts() {
                 } else {
                     getWebProperties(item).then(result => result.items.forEach(item => {
                         getProfiles(item.accountId, item.id).then(items => {
-                            var permissionsCount;
+                            var permissionsCount = 0;
                             items.forEach(item => {
+                                console.log(item.permissions.effective);
                                 if (item.permissions.effective.indexOf("EDIT") !== -1) {
                                     permissionsCount += 1;
                                 }
