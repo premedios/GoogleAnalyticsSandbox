@@ -238,7 +238,7 @@ function renderCharts() {
         function getProfileData(itemId) {
             return new Promise((fulfill, reject) => {
                 gapi.client.analytics.data.ga.get({
-                    'ids': 'ga:' + item.id,
+                    'ids': 'ga:' + itemId,
                     'dimensions': 'ga:date,ga:nthDay',
                     'start-date': '7daysAgo',
                     'end-date': 'today',
