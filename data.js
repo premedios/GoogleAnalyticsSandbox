@@ -17,7 +17,7 @@ function renderCharts() {
             immediate: true
         }, function(response) {
             // Get a list of all Google Analytics accounts for this user
-            gapi.client.analytics.management.accounts.list().then(handleResponse);
+            gapi.client.analytics.management.accounts.list().then(showAccounts);
         });
 
         // gapi.client.analytics.management.accounts.list().then(handleResponse);
@@ -203,7 +203,7 @@ function renderCharts() {
             return div.innerHTML;
         }
 
-        function handleResponse(response) {
+        function showAccounts(response) {
             if (response.result.items && response.result.items.length) {
                 var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
                 $("#accountId").html(accountIdSelectOptions);
