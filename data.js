@@ -142,17 +142,15 @@ function renderCharts() {
         }
 
         function showProfiles(ids) {
-            console.log(ids);
             var idsArray = ids.split(",");
             getProfiles(idsArray[1], idsArray[0]).then(items => {
-                console.log(items);
                 var profilesSelectOptions = items.reduce((optionsHTML, item) => {
                     if (item.permissions.effective.indexOf("EDIT") !== -1) {
                         return optionsHTML + "<option value='" + item.id + "'>" + item.name + "</options>";
                     }
                 }, "");
                 $("#profileId").html(profilesSelectOptions);
-                $("#profileId").on("change", console.log("hello"));
+                $("#profileId").on("change", renderWeekOverWeekChart('ga:' + e.target.id));
                 $("#profileId").trigger("change");
             });
         }
@@ -204,6 +202,15 @@ function renderCharts() {
                     });
                 }
             })
+        }
+
+        function query(params) {
+            return new Promise(function(fulfill, reject) {
+                var data = new gapi.analytics.report.Data({ query: params });
+                data.once('success', function(response) { fulfill(response); })
+                    .once('error', function(response) { reject(response); })
+                    .execute();
+            });
         }
 
     });
