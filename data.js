@@ -272,7 +272,7 @@ function renderCharts() {
                         }
                         //getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
                     })
-                    return permissionsCount !== 0;
+                    return Promise.resolve(permissionsCount !== 0);
                 });
             }));
         }
