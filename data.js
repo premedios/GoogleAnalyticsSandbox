@@ -207,7 +207,9 @@ function renderCharts() {
             console.log(response)
             if (response.result.items && response.result.items.length) {
                 response.result.items.filter(item => item.name !== "").forEach(item => {
-                    accountPermission(item.id);
+                    if (item.permissions.indexOf("EDIT") !== -1) {
+                        console.log(item.name + "is valid");
+                    }
                 });
                 // var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
                 // $("#accountId").html(accountIdSelectOptions);
