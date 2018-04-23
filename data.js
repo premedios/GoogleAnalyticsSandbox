@@ -211,10 +211,14 @@ function renderCharts() {
         function showAccounts(response) {
             if (response.result.items && response.result.items.length) {
                 response.result.items.filter(item => item.name !== "").forEach(item => {
-                    accountIsValid(item).then(result => console.log(result));
+                    accountIsValid(item).then(result => {
+                        if (result.hasPermissions) {
+                            var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
+                            $("#accountId").html(accountIdSelectOptions);
+                        }
+                    });
                 });
-                // var accountIdSelectOptions = response.result.items.filter(item => item.name !== "").reduce((optionsHTML, item) => optionsHTML + "<option value='" + item.id + "'>" + item.name + "</option>", "");
-                // $("#accountId").html(accountIdSelectOptions);
+
                 // //showWebProperties(response.result.items[0].id);
                 // $("#accountId").on("change", e => showWebProperties(e.target.value));
                 // $("#accountId").trigger('change');
