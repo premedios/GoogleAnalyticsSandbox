@@ -254,6 +254,7 @@ function renderCharts() {
             console.log(ids);
             var idsArray = ids.split(",");
             getProfiles(idsArray[1], idsArray[0]).then(items => {
+                console.log(items);
                 var profilesSelectOptions = items.reduce((optionsHTML, item) => {
                     if (item.permissions.effective.indexOf("EDIT") !== -1) {
                         return optionsHTML + "<option value='" + item.id + "'>" + item.name + "</options>";
