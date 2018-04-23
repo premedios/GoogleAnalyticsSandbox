@@ -259,7 +259,7 @@ function renderCharts() {
                     if (item.permissions.effective.indexOf("EDIT") !== -1) {
                         return optionsHTML + "<option value='" + item.id + "'>" + item.name + "</options>";
                     }
-                });
+                }, "");
                 $("#profileId").html(profilesSelectOptions);
                 $("#profileId").on("change", console.log("hello"));
                 $("#profileId").trigger("change");
