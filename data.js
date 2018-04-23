@@ -259,7 +259,7 @@ function renderCharts() {
                     }
                 });
                 $("#profileId").html(profilesSelectOptions);
-                $("#profileId").on("change", console("hello"));
+                $("#profileId").on("change", console.log("hello"));
                 $("#profileId").trigger("change");
             });
         }
