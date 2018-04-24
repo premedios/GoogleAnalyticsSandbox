@@ -233,8 +233,8 @@ function renderCharts() {
                     reportRequests: [{
                         viewId: VIEW_ID,
                         dateRanges: [{
-                            startDate: '14daysAgo',
-                            endDate: 'today'
+                            startDate: '13daysAgo',
+                            endDate: '7daysAgo'
                         }],
                         metrics: [{
                             expression: 'ga:sessions'
