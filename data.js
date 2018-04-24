@@ -6,10 +6,12 @@ function renderCharts() {
     gapi.analytics.ready(function() {
 
         $("#barChartButton").on("click", e => {
+            console.log(e);
             selectedChartType = e.target.html;
             renderWeekOverWeekChart(selectedProfileId, selectedChartType)
         });
         $("#lineChartButton").on("click", e => {
+            console.log(e);
             selectedChartType = e.target.html;
             renderWeekOverWeekChart(selectedProfileId, selectedChartType)
         });
