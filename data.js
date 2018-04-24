@@ -234,18 +234,14 @@ function renderCharts() {
                         viewId: VIEW_ID,
                         dateRanges: [{
                             startDate: '14daysAgo',
-                            endDate: '7daysAgo'
+                            endDate: 'today'
                         }],
                         metrics: [{
                             expression: 'ga:sessions'
                         }],
                         dimensions: [{
-                                "name": "ga:date"
-                            },
-                            {
-                                "name": "ga:nthDay"
-                            }
-                        ],
+                            "name": "ga:nthDay"
+                        }],
                         includeEmptyRows: true
                     }]
                 }
