@@ -82,9 +82,7 @@ function renderCharts() {
 
                 //console.log(data);
 
-                console.log(chartObj);
-                console.log(lineChart);
-                console.log(barChart);
+                console.log($("#canvas").getContext("2d"));
                 if (chartObj) {
                     chartObj.destroy();
                     chartObj = null;
