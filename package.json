@@ -8,7 +8,5 @@
     },
     "author": "",
     "license": "ISC",
-    "dependencies": {
-        "javascript-api-utils": "git+https://git@github.com/googleanalytics/javascript-api-utils.git"
-    }
+    "dependencies": {}
 }

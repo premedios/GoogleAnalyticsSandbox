@@ -174,21 +174,21 @@ function renderCharts() {
             }).then(result => console.log(result));
         }
 
-        function getProfileData(itemId, permissions) {
-            return new Promise((fulfill, reject) => {
-                if (permissions.indexOf("EDIT") !== -1) {
-                    gapi.client.analytics.data.ga.get({
-                        'ids': 'ga:' + itemId,
-                        'dimensions': 'ga:date',
-                        'start-date': '7daysAgo',
-                        'end-date': 'today',
-                        'metrics': 'ga:sessions'
-                    }).then(response => fulfill(response.result.rows)).then(null, response => reject(response.result.error.errors[0].message));
-                } else {
-                    reject("No permissions");
-                }
-            });
-        }
+        // function getProfileData(itemId, permissions) {
+        //     return new Promise((fulfill, reject) => {
+        //         if (permissions.indexOf("EDIT") !== -1) {
+        //             gapi.client.analytics.data.ga.get({
+        //                 'ids': 'ga:' + itemId,
+        //                 'dimensions': 'ga:date',
+        //                 'start-date': '7daysAgo',
+        //                 'end-date': 'today',
+        //                 'metrics': 'ga:sessions'
+        //             }).then(response => fulfill(response.result.rows)).then(null, response => reject(response.result.error.errors[0].message));
+        //         } else {
+        //             reject("No permissions");
+        //         }
+        //     });
+        // }
 
         function accountIsValid(item) {
             return new Promise((fulfill, reject) => {
