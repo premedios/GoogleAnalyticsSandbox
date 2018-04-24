@@ -1,10 +1,5 @@
 function renderCharts() {
     gapi.analytics.ready(function() {
-        var selectData = {
-            accounts: [],
-            accountProperties: [],
-            propertyProfiles: []
-        }
 
         gapi.auth.authorize({
             client_id: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com',
@@ -207,7 +202,7 @@ function renderCharts() {
         }
 
         // Replace with your view ID.
-        var VIEW_ID = '173739286';
+        //var VIEW_ID = '173739286';
 
         // Query the API and print the results to the page.
         // function queryReports() {
