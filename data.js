@@ -37,7 +37,7 @@ function renderCharts() {
                 'ids': ids,
                 'dimensions': 'ga:date',
                 'start-date': '14daysAgo',
-                'end-date': '8daysAgo',
+                'end-date': '7daysAgo',
                 'metrics': 'ga:sessions'
             });
 
