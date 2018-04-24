@@ -82,7 +82,6 @@ function renderCharts() {
                 //console.log(data);
 
                 if (chartObj) {
-                    console.log("Found It");
                     chartObj.destroy();
                     chartObj = null;
                 }
@@ -113,7 +112,7 @@ function renderCharts() {
                 });
                 console.log("chartObj", chartObj);
                 chartObj.generateLegend();
-                queryReports();
+                // queryReports();
             });
         }
 
