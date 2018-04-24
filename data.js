@@ -44,8 +44,8 @@ function renderCharts() {
             Promise.all([thisWeek, lastWeek]).then(function(results) {
                 console.log(results);
 
-                var data1 = results[0].rows.map(function(row) { return +row[2]; });
-                var data2 = results[1].rows.map(function(row) { return +row[2]; });
+                var data1 = results[0].rows.map(function(row) { return +row[1]; });
+                var data2 = results[1].rows.map(function(row) { return +row[1]; });
                 var labels = results[0].rows.map(function(row) { return +row[0]; });
 
                 labels = labels.map(function(label) {
