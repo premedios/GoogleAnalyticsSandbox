@@ -31,7 +31,7 @@ function renderCharts() {
         //  * overlays session data for the current week over session data for the
         //  * previous week.
         //  */
-        function renderWeekOverWeekChart(ids, chartType, c) {
+        function renderWeekOverWeekChart(ids, chartType, chartObj) {
 
             // Adjust `now` to experiment with different days, for testing only...
             var now = moment(); // .subtract(3, 'day');
