@@ -233,14 +233,9 @@ function renderCharts() {
                     reportRequests: [{
                         viewId: VIEW_ID,
                         dateRanges: [{
-                                startDate: moment().subtract(14, "d").format("YYYY-MM-DD"),
-                                endDate: moment().subtract(8, "d").format("YYYY-MM-DD")
-                            },
-                            {
-                                startDate: '7daysAgo',
-                                endDate: 'today'
-                            }
-                        ],
+                            startDate: '14daysAgo',
+                            endDate: 'today'
+                        }],
                         metrics: [{
                             expression: 'ga:sessions'
                         }],
@@ -251,7 +246,6 @@ function renderCharts() {
                                 "name": "ga:nthDay"
                             }
                         ],
-                        "include-empty-rows": true
                     }]
                 }
             }).then(displayResults, console.error.bind(console));
