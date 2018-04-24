@@ -57,12 +57,14 @@ function renderCharts() {
                     datasets: [{
                             borderColor: 'rgba(255, 0, 0, 1)',
                             borderWidth: 3,
+                            lineTension: 0,
                             label: 'Last Week',
                             data: data2
                         },
                         {
                             borderColor: 'rgba(0, 0, 255, 1)',
                             borderWidth: 3,
+                            lineTension: 0,
                             label: 'This Week',
                             data: data1
                         }
