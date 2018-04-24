@@ -42,8 +42,6 @@ function renderCharts() {
             });
 
             Promise.all([thisWeek, lastWeek]).then(function(results) {
-                console.log(results);
-
                 var data1 = results[0].rows.map(function(row) { return +row[1]; });
                 var data2 = results[1].rows.map(function(row) { return +row[1]; });
                 var labels = results[0].rows.map(function(row) { return +row[0]; });
@@ -212,37 +210,34 @@ function renderCharts() {
         var VIEW_ID = '173739286';
 
         // Query the API and print the results to the page.
-        function queryReports() {
-            console.log(moment().subtract(14, "d").format("YYYY-MM-DD"));
-            console.log(moment().subtract(8, "d").format("YYYY-MM-DD"));
-            gapi.client.request({
-                path: '/v4/reports:batchGet',
-                root: 'https://analyticsreporting.googleapis.com/',
-                method: 'POST',
-                body: {
-                    reportRequests: [{
-                        viewId: VIEW_ID,
-                        dateRanges: [{
-                            startDate: '13daysAgo',
-                            endDate: '7daysAgo'
-                        }],
-                        metrics: [{
-                            expression: 'ga:sessions'
-                        }],
-                        dimensions: [{
-                            "name": "ga:date"
-                        }],
-                        includeEmptyRows: true
-                    }]
-                }
-            }).then(displayResults, console.error.bind(console));
-        }
+        // function queryReports() {
+        //     gapi.client.request({
+        //         path: '/v4/reports:batchGet',
+        //         root: 'https://analyticsreporting.googleapis.com/',
+        //         method: 'POST',
+        //         body: {
+        //             reportRequests: [{
+        //                 viewId: VIEW_ID,
+        //                 dateRanges: [{
+        //                     startDate: '13daysAgo',
+        //                     endDate: '7daysAgo'
+        //                 }],
+        //                 metrics: [{
+        //                     expression: 'ga:sessions'
+        //                 }],
+        //                 dimensions: [{
+        //                     "name": "ga:date"
+        //                 }],
+        //                 includeEmptyRows: true
+        //             }]
+        //         }
+        //     }).then(displayResults, console.error.bind(console));
+        // }
 
-        function displayResults(response) {
-            console.log(response);
-            var formattedJson = JSON.stringify(response.result, null, 2);
-            document.getElementById('query-output').value = formattedJson;
-        }
+        // function displayResults(response) {
+        //     var formattedJson = JSON.stringify(response.result, null, 2);
+        //     document.getElementById('query-output').value = formattedJson;
+        // }
 
     });
 }
