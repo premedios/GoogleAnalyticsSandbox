@@ -1,5 +1,6 @@
 function renderCharts() {
     var selectedChartType = "";
+    var currentChart = null;
     $("#barChartButton").on("click", e => {
         selectedChartType = e.target.value;
         renderWeekOverWeekChart(selectedProfileId, e.target.value)
@@ -75,7 +76,12 @@ function renderCharts() {
 
                 //console.log(data);
 
-                var chart = new Chart($("#chart"), {
+                if (currentChart) {
+                    currentChart.destroy();
+                    currentChart = null;
+                }
+
+                currrentChart = new Chart($("#chart"), {
                     type: chartType,
                     data: data,
                     options: {
