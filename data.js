@@ -81,6 +81,7 @@ function renderCharts() {
 
                 //console.log(data);
 
+                console.log(currentChart);
                 if (currentChart) {
                     currentChart.destroy();
                     currentChart = null;
