@@ -226,6 +226,8 @@ function renderCharts() {
 
         // Query the API and print the results to the page.
         function queryReports() {
+            console.log(moment().subtract(14, "d").format("YYYY-MM-DD"));
+            console.log(moment().subtract(8, "d").format("YYYY-MM-DD"));
             gapi.client.request({
                 path: '/v4/reports:batchGet',
                 root: 'https://analyticsreporting.googleapis.com/',
