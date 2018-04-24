@@ -234,8 +234,8 @@ function renderCharts() {
                     reportRequests: [{
                         viewId: VIEW_ID,
                         dateRanges: [{
-                                startDate: moment().subtract(14, "d"),
-                                endDate: moment().subtract(8, "d")
+                                startDate: moment().subtract(14, "d").format("YYYY-MM-DD"),
+                                endDate: moment().subtract(8, "d").format("YYYY-MM-DD")
                             },
                             {
                                 startDate: '7daysAgo',
