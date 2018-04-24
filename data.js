@@ -239,7 +239,14 @@ function renderCharts() {
                         }],
                         metrics: [{
                             expression: 'ga:sessions'
-                        }]
+                        }],
+                        dimensions: [{
+                                "name:": "ga:date"
+                            },
+                            {
+                                "name": "ga:nthDay"
+                            }
+                        ]
                     }]
                 }
             }).then(displayResults, console.error.bind(console));
