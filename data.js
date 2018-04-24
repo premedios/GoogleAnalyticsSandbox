@@ -169,7 +169,7 @@ function renderCharts() {
                 $("#profileId").html(profilesSelectOptions);
                 $("#profileId").on("change", e => {
                     selectedProfileId = 'ga:' + e.target.value;
-                    renderWeekOverWeekChart(selectedProfileId, selectedChartType || 'bar', selectedChartType === 'bar' ? barChart : lineChart);
+                    renderWeekOverWeekChart(selectedProfileId, selectedChartType || 'bar');
                 });
                 $("#profileId").trigger("change");
             });
