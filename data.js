@@ -1,10 +1,10 @@
 function renderCharts() {
-    var selectedChartType = "";
-    var selectedProfileId = "";
-    var barChart = null;
-    var lineChart = null;
-
     gapi.analytics.ready(function() {
+        var selectedChartType = "";
+        var selectedProfileId = "";
+        var barChart = null;
+        var lineChart = null;
+
 
         $("#barChartButton").on("click", e => {
             console.log(e);
