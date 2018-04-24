@@ -47,8 +47,6 @@ function renderCharts() {
                 var data2 = results[1].rows.map(function(row) { return +row[2]; });
                 var labels = results[0].rows.map(function(row) { return +row[0]; });
 
-                console.log(labels);
-
                 labels = labels.map(function(label) {
                     return moment(label, 'YYYYMMDD').format('ddd');
                 });
@@ -102,7 +100,6 @@ function renderCharts() {
                 var accountIdSelectOptions = "";
                 response.result.items.filter(item => item.name !== "").forEach(item => {
                     accountIsValid(item).then(result => {
-                        console.log(result.hasPermissions);
                         if (result.hasPermissions === true) {
                             accountIdSelectOptions = accountIdSelectOptions + "<option value='" + item.id + "'>" + item.name + "</option>";
                             $("#accountId").html(accountIdSelectOptions);
@@ -253,7 +250,8 @@ function renderCharts() {
                             {
                                 "name": "ga:nthDay"
                             }
-                        ]
+                        ],
+                        "include-empty-rows": true
                     }]
                 }
             }).then(displayResults, console.error.bind(console));
