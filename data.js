@@ -70,7 +70,7 @@ function renderCharts() {
                 //console.log(data);
 
                 new Chart($("#chart"), {
-                    type: 'bar',
+                    type: 'line',
                     data: data,
                     options: {
                         maintainAspectRatio: false,
@@ -174,22 +174,6 @@ function renderCharts() {
             }).then(result => console.log(result));
         }
 
-        // function getProfileData(itemId, permissions) {
-        //     return new Promise((fulfill, reject) => {
-        //         if (permissions.indexOf("EDIT") !== -1) {
-        //             gapi.client.analytics.data.ga.get({
-        //                 'ids': 'ga:' + itemId,
-        //                 'dimensions': 'ga:date',
-        //                 'start-date': '7daysAgo',
-        //                 'end-date': 'today',
-        //                 'metrics': 'ga:sessions'
-        //             }).then(response => fulfill(response.result.rows)).then(null, response => reject(response.result.error.errors[0].message));
-        //         } else {
-        //             reject("No permissions");
-        //         }
-        //     });
-        // }
-
         function accountIsValid(item) {
             return new Promise((fulfill, reject) => {
                 if (item.permissions.effective.indexOf("EDIT") !== -1) {
@@ -203,7 +187,6 @@ function renderCharts() {
                                     if (item.permissions.effective.indexOf("EDIT") !== -1) {
                                         permissionsCount += 1;
                                     }
-                                    //getProfileData(item.id, item.permissions.effective).then(response => console.log(response)).then(null, response => console.log("ERR: ", response));
                                 });
                             });
                         });
