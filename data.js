@@ -42,6 +42,7 @@ function renderCharts() {
             });
 
             Promise.all([thisWeek, lastWeek]).then(function(results) {
+                console.log(results);
 
                 var data1 = results[0].rows.map(function(row) { return +row[2]; });
                 var data2 = results[1].rows.map(function(row) { return +row[2]; });
