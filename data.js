@@ -7,12 +7,12 @@ function renderCharts() {
 
         $("#barChartButton").on("click", e => {
             console.log(e);
-            selectedChartType = e.target.innerHtml;
+            selectedChartType = e.target.innerHTML;
             renderWeekOverWeekChart(selectedProfileId, selectedChartType)
         });
         $("#lineChartButton").on("click", e => {
             console.log(e);
-            selectedChartType = e.target.innerHtml;
+            selectedChartType = e.target.innerHTML;
             renderWeekOverWeekChart(selectedProfileId, selectedChartType)
         });
 
