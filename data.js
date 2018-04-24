@@ -1,19 +1,20 @@
 function renderCharts() {
     var selectedChartType = "";
     var selectedProfileId = "";
-    var currentChart = null;
+    var barChart = null;
+    var linechart = null;
 
     gapi.analytics.ready(function() {
 
         $("#barChartButton").on("click", e => {
             console.log(e);
             selectedChartType = e.target.innerHTML;
-            renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase())
+            renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase(), barChart)
         });
         $("#lineChartButton").on("click", e => {
             console.log(e);
             selectedChartType = e.target.innerHTML;
-            renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase())
+            renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase(), lineChart)
         });
 
         gapi.auth.authorize({
@@ -30,7 +31,7 @@ function renderCharts() {
         //  * overlays session data for the current week over session data for the
         //  * previous week.
         //  */
-        function renderWeekOverWeekChart(ids, chartType) {
+        function renderWeekOverWeekChart(ids, chartType, chartObj) {
 
             // Adjust `now` to experiment with different days, for testing only...
             var now = moment(); // .subtract(3, 'day');
@@ -81,13 +82,15 @@ function renderCharts() {
 
                 //console.log(data);
 
-                console.log(currentChart);
-                if (currentChart) {
-                    currentChart.destroy();
-                    currentChart = null;
+                console.log(chartObj);
+                if (chartObj) {
+                    chartObj.destroy();
+                    chartObj = null;
+                } else {
+                    chartObj = (chartType === "bar" ? barChart : lineChart);
                 }
 
-                currrentChart = new Chart($("#chart"), {
+                chartObj = new Chart($("#chart"), {
                     type: chartType,
                     data: data,
                     options: {
@@ -168,7 +171,7 @@ function renderCharts() {
                 $("#profileId").html(profilesSelectOptions);
                 $("#profileId").on("change", e => {
                     selectedProfileId = 'ga:' + e.target.value;
-                    renderWeekOverWeekChart(selectedProfileId, selectedChartType || 'bar');
+                    renderWeekOverWeekChart(selectedProfileId, selectedChartType || 'bar', selectedChartType === 'bar' ? barChart : lineChart);
                 });
                 $("#profileId").trigger("change");
             });
