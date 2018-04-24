@@ -1,15 +1,17 @@
 function renderCharts() {
     var selectedChartType = "";
     var currentChart = null;
-    $("#barChartButton").on("click", e => {
-        selectedChartType = e.target.value;
-        renderWeekOverWeekChart(selectedProfileId, e.target.value)
-    });
-    $("#lineChartButton").on("click", e => {
-        selectedChartType = e.target.value;
-        renderWeekOverWeekChart(selectedProfileId, e.target.value)
-    });
+
     gapi.analytics.ready(function() {
+
+        $("#barChartButton").on("click", e => {
+            selectedChartType = e.target.value;
+            renderWeekOverWeekChart(selectedProfileId, e.target.value)
+        });
+        $("#lineChartButton").on("click", e => {
+            selectedChartType = e.target.value;
+            renderWeekOverWeekChart(selectedProfileId, e.target.value)
+        });
 
         gapi.auth.authorize({
             client_id: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com',
