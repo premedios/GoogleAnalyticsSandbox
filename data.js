@@ -73,7 +73,7 @@ function renderCharts() {
 
                 //console.log(data);
 
-                new Chart($("#chart"), {
+                var chart = new Chart($("#chart"), {
                     type: 'line',
                     data: data,
                     options: {
@@ -97,7 +97,7 @@ function renderCharts() {
                         },
                     }
                 });
-                //generateLegend('legend-container', data.datasets);
+                chart.generateLegend();
                 queryReports();
             });
         }
