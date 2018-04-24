@@ -1,4 +1,13 @@
 function renderCharts() {
+    var selectedChartType = "";
+    $("#barChartButton").on("click", e => {
+        selectedChartType = e.target.value;
+        renderWeekOverWeekChart(selectedProfileId, e.target.value)
+    });
+    $("#lineChartButton").on("click", e => {
+        selectedChartType = e.target.value;
+        renderWeekOverWeekChart(selectedProfileId, e.target.value)
+    });
     gapi.analytics.ready(function() {
 
         gapi.auth.authorize({
@@ -15,7 +24,7 @@ function renderCharts() {
         //  * overlays session data for the current week over session data for the
         //  * previous week.
         //  */
-        function renderWeekOverWeekChart(ids) {
+        function renderWeekOverWeekChart(ids, chartType) {
 
             // Adjust `now` to experiment with different days, for testing only...
             var now = moment(); // .subtract(3, 'day');
@@ -67,7 +76,7 @@ function renderCharts() {
                 //console.log(data);
 
                 var chart = new Chart($("#chart"), {
-                    type: 'line',
+                    type: chartType,
                     data: data,
                     options: {
                         maintainAspectRatio: false,
@@ -145,7 +154,7 @@ function renderCharts() {
                     }
                 }, "");
                 $("#profileId").html(profilesSelectOptions);
-                $("#profileId").on("change", e => renderWeekOverWeekChart('ga:' + e.target.value));
+                $("#profileId").on("change", e => renderWeekOverWeekChart('ga:' + e.target.value, selectedChartType || 'bar'));
                 $("#profileId").trigger("change");
             });
         }
