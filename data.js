@@ -240,7 +240,7 @@ function renderCharts() {
                             expression: 'ga:sessions'
                         }],
                         dimensions: [{
-                            "name": "ga:nthDay"
+                            "name": "ga:date"
                         }],
                         includeEmptyRows: true
                     }]
