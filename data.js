@@ -241,7 +241,7 @@ function renderCharts() {
                             expression: 'ga:sessions'
                         }],
                         dimensions: [{
-                                "name:": "ga:date"
+                                "name": "ga:date"
                             },
                             {
                                 "name": "ga:nthDay"
