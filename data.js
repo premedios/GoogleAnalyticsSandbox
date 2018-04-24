@@ -2,19 +2,18 @@ function renderCharts() {
     gapi.analytics.ready(function() {
         var selectedChartType = "";
         var selectedProfileId = "";
-        var barChart = null;
-        var lineChart = null;
+        var chartObj = null;
 
 
         $("#barChartButton").on("click", e => {
             console.log(e);
             selectedChartType = e.target.innerHTML;
-            renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase(), barChart)
+            renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase())
         });
         $("#lineChartButton").on("click", e => {
             console.log(e);
             selectedChartType = e.target.innerHTML;
-            renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase(), lineChart)
+            renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase())
         });
 
         gapi.auth.authorize({
@@ -31,7 +30,7 @@ function renderCharts() {
         //  * overlays session data for the current week over session data for the
         //  * previous week.
         //  */
-        function renderWeekOverWeekChart(ids, chartType, chartObj) {
+        function renderWeekOverWeekChart(ids, chartType) {
 
             // Adjust `now` to experiment with different days, for testing only...
             var now = moment(); // .subtract(3, 'day');
@@ -82,16 +81,10 @@ function renderCharts() {
 
                 //console.log(data);
 
-                var canvas = document.getElementById("chart");
-                var chart = canvas.getContext("2d");
-                console.log("before", chart);
-                chart.destroy();
-                console.log("after", chart);
                 if (chartObj) {
+                    console.log("Found It");
                     chartObj.destroy();
                     chartObj = null;
-                } else {
-                    chartObj = (chartType === "bar" ? barChart : lineChart);
                 }
 
                 chartObj = new Chart($("#chart"), {
