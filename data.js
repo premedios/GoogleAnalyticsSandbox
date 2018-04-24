@@ -1,16 +1,17 @@
 function renderCharts() {
     var selectedChartType = "";
+    var selectedProfileId = "";
     var currentChart = null;
 
     gapi.analytics.ready(function() {
 
         $("#barChartButton").on("click", e => {
             selectedChartType = e.target.value;
-            renderWeekOverWeekChart(selectedChartType, e.target.value)
+            renderWeekOverWeekChart(selectedProfileId, e.target.value)
         });
         $("#lineChartButton").on("click", e => {
             selectedChartType = e.target.value;
-            renderWeekOverWeekChart(selectedChartType, e.target.value)
+            renderWeekOverWeekChart(selectedProfileId, e.target.value)
         });
 
         gapi.auth.authorize({
@@ -162,7 +163,10 @@ function renderCharts() {
                     }
                 }, "");
                 $("#profileId").html(profilesSelectOptions);
-                $("#profileId").on("change", e => renderWeekOverWeekChart('ga:' + e.target.value, selectedChartType || 'bar'));
+                $("#profileId").on("change", e => {
+                    selectedProfileId = 'ga:' + e.target.value;
+                    renderWeekOverWeekChart(selectedProfileId, selectedChartType || 'bar');
+                });
                 $("#profileId").trigger("change");
             });
         }
