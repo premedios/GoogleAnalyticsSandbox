@@ -246,6 +246,7 @@ function renderCharts() {
                                 "name": "ga:nthDay"
                             }
                         ],
+                        includeEmptyRows: true
                     }]
                 }
             }).then(displayResults, console.error.bind(console));
