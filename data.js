@@ -6,11 +6,11 @@ function renderCharts() {
 
         $("#barChartButton").on("click", e => {
             selectedChartType = e.target.value;
-            renderWeekOverWeekChart(selectedProfileId, e.target.value)
+            renderWeekOverWeekChart(selectedChartType, e.target.value)
         });
         $("#lineChartButton").on("click", e => {
             selectedChartType = e.target.value;
-            renderWeekOverWeekChart(selectedProfileId, e.target.value)
+            renderWeekOverWeekChart(selectedChartType, e.target.value)
         });
 
         gapi.auth.authorize({
