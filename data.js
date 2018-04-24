@@ -83,7 +83,7 @@ function renderCharts() {
                 //console.log(data);
 
                 console.log(chartObj);
-                console.log(linechart);
+                console.log(lineChart);
                 console.log(barChart);
                 if (chartObj) {
                     chartObj.destroy();
