@@ -8,12 +8,12 @@ function renderCharts() {
         $("#barChartButton").on("click", e => {
             console.log(e);
             selectedChartType = e.target.innerHTML;
-            renderWeekOverWeekChart(selectedProfileId, selectedChartType)
+            renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase())
         });
         $("#lineChartButton").on("click", e => {
             console.log(e);
             selectedChartType = e.target.innerHTML;
-            renderWeekOverWeekChart(selectedProfileId, selectedChartType)
+            renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase())
         });
 
         gapi.auth.authorize({
