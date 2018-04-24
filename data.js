@@ -2,7 +2,7 @@ function renderCharts() {
     var selectedChartType = "";
     var selectedProfileId = "";
     var barChart = null;
-    var linechart = null;
+    var lineChart = null;
 
     gapi.analytics.ready(function() {
 
