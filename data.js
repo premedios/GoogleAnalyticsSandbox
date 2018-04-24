@@ -27,7 +27,7 @@ function renderCharts() {
 
             var thisWeek = query({
                 'ids': ids,
-                'dimensions': 'ga:date,ga:nthDay',
+                'dimensions': 'ga:date',
                 'start-date': '7daysAgo',
                 'end-date': 'today',
                 'metrics': 'ga:sessions'
@@ -35,9 +35,9 @@ function renderCharts() {
 
             var lastWeek = query({
                 'ids': ids,
-                'dimensions': 'ga:date,ga:nthDay',
-                'start-date': '7daysAgo',
-                'end-date': 'today',
+                'dimensions': 'ga:date',
+                'start-date': '14daysAgo',
+                'end-date': '8daysAgo',
                 'metrics': 'ga:sessions'
             });
 
@@ -164,7 +164,7 @@ function renderCharts() {
         function renderChart(ids) {
             gapi.client.analytics.data.ga.get({
                 'ids': ids,
-                'dimensions': 'ga:date,ga:nthDay',
+                'dimensions': 'ga:date',
                 'start-date': '7daysAgo',
                 'end-date': 'today',
                 'metrics': 'ga:sessions'
@@ -176,7 +176,7 @@ function renderCharts() {
                 if (permissions.indexOf("EDIT") !== -1) {
                     gapi.client.analytics.data.ga.get({
                         'ids': 'ga:' + itemId,
-                        'dimensions': 'ga:date,ga:nthDay',
+                        'dimensions': 'ga:date',
                         'start-date': '7daysAgo',
                         'end-date': 'today',
                         'metrics': 'ga:sessions'
