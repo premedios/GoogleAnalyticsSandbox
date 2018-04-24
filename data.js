@@ -13,7 +13,6 @@ function renderCharts() {
         }, function(response) {
             // Get a list of all Google Analytics accounts for this user
             gapi.client.analytics.management.accounts.list().then(showAccounts);
-            queryReports();
         });
 
         // /**
@@ -93,7 +92,8 @@ function renderCharts() {
                         },
                     }
                 });
-                generateLegend('legend-container', data.datasets);
+                //generateLegend('legend-container', data.datasets);
+                queryReports();
             });
         }
 
@@ -246,6 +246,7 @@ function renderCharts() {
         }
 
         function displayResults(response) {
+            console.log(response);
             var formattedJson = JSON.stringify(response.result, null, 2);
             document.getElementById('query-output').value = formattedJson;
         }
