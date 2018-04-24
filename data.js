@@ -55,12 +55,14 @@ function renderCharts() {
                 var data = {
                     labels: labels,
                     datasets: [{
-                            backgroundColor: 'rgba(255, 0, 0, 1)',
+                            borderColor: 'rgba(255, 0, 0, 1)',
+                            borderWidth: 3,
                             label: 'Last Week',
                             data: data2
                         },
                         {
-                            backgroundColor: 'rgba(0, 0, 255, 1)',
+                            borderColor: 'rgba(0, 0, 255, 1)',
+                            borderWidth: 3,
                             label: 'This Week',
                             data: data1
                         }
