@@ -19,7 +19,7 @@ function renderCharts() {
         gapi.analytics.auth.on('signOut', function() { console.log('signed out');});
         gapi.analytics.auth.once('needsAuthorization', function() { 
             console.log('needs authorization');
-            $(".gapi-analytics-auth-styles-signinbutton.gapi-analytics-auth-styles-signinbutton:hover").trigger("click");
+            $(".gapi-analytics-auth-styles-signinbutton").trigger("click");
         });
         gapi.analytics.auth.once('error', function(error) { console.log(error);});
 
