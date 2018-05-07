@@ -23,7 +23,7 @@ window.onGoogleYoloLoad = (googleyolo) => {
             "googleyolo://id-and-password"
         ],
         supportedIdTokenProviders: [{
-            uri: "https://analytics.google.com",
+            uri: "https://accounts.google.com",
             clientId: "708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com"
         }]
     }).then((credential) => {
