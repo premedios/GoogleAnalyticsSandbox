@@ -17,7 +17,10 @@ function renderCharts() {
 
         gapi.analytics.auth.on('signIn', function() { console.log('signed in');});
         gapi.analytics.auth.on('signOut', function() { console.log('signed out');});
-        gapi.analytics.auth.once('needsAuthorization', function() { console.log('needs authorization');});
+        gapi.analytics.auth.once('needsAuthorization', function() { 
+            console.log('needs authorization');
+            $(".gapi-analytics-auth-styles-signinbutton.gapi-analytics-auth-styles-signinbutton:hover").trigger("click");
+        });
         gapi.analytics.auth.once('error', function(error) { console.log(error);});
 
         gapi.analytics.auth.authorize({
