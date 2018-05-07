@@ -4,7 +4,6 @@ function renderCharts() {
         var selectedProfileId = "";
         var chartObj = null;
 
-
         $("#barChartButton").on("click", e => {
             console.log(e);
             selectedChartType = e.target.innerHTML;
@@ -16,7 +15,16 @@ function renderCharts() {
             renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase())
         });
 
-        gapi.client.analytics.management.accounts.list().then(showAccounts);
+        gapi.analytics.auth.on('signIn', function() { console.log('signed in');});
+        gapi.analytics.auth.on('signOut', function() { console.log('signed out');});
+        gapi.analytics.auth.once('needsAuthorization', function() { console.log('needs authorization');});
+        gapi.analytics.auth.once('error', function(error) { console.log(error);});
+
+        gapi.analytics.auth.authorize({
+            container: 'embed-api-auth-container',
+            userInfoLabel: '',
+            clientId: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
+        });
 
         /* gapi.auth.authorize({
             client_id: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com',
