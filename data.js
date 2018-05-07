@@ -23,7 +23,7 @@ function renderCharts() {
         gapi.analytics.auth.authorize({
             container: 'embed-api-auth-container',
             userInfoLabel: '',
-            clientId: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
+            clientid: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com'
         });
 
         /* gapi.auth.authorize({
