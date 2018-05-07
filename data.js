@@ -16,14 +16,16 @@ function renderCharts() {
             renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase())
         });
 
-        gapi.auth.authorize({
+        gapi.client.analytics.management.accounts.list().then(showAccounts);
+
+        /* gapi.auth.authorize({
             client_id: '708383383102-4h03gssp03i8ceonmqm14a44eugq9dh5.apps.googleusercontent.com',
             scope: ['https://www.googleapis.com/auth/analytics.readonly'],
             immediate: true
         }, function(response) {
             // Get a list of all Google Analytics accounts for this user
             gapi.client.analytics.management.accounts.list().then(showAccounts);
-        });
+        }); */
 
         // /**
         //  * Draw the a chart.js line chart with data from the specified view that
