@@ -15,13 +15,16 @@ function renderCharts() {
             renderWeekOverWeekChart(selectedProfileId, selectedChartType.toLowerCase())
         });
 
-        gapi.analytics.auth.on('signIn', function() { console.log('signed in');});
-        gapi.analytics.auth.on('signOut', function() { console.log('signed out');});
-        gapi.analytics.auth.once('needsAuthorization', function() { 
+        gapi.analytics.auth.on('signIn', function() {
+            console.log('signed in');
+            gapi.client.analytics.management.accounts.list().then(showAccounts);
+        });
+        gapi.analytics.auth.on('signOut', function() { console.log('signed out'); });
+        gapi.analytics.auth.once('needsAuthorization', function() {
             console.log('needs authorization');
             $(".gapi-analytics-auth-styles-signinbutton").trigger("click");
         });
-        gapi.analytics.auth.once('error', function(error) { console.log(error);});
+        gapi.analytics.auth.once('error', function(error) { console.log(error); });
 
         gapi.analytics.auth.authorize({
             container: 'embed-api-auth-container',
